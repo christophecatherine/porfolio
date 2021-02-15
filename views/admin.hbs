@@ -1,0 +1,26 @@
+{{!--
+Page admin
+/ admin
+--}}
+
+<section class="container ">
+    <div class="d-flex-justify-arround">
+        <div class="col-md-12 borber border-dark">
+            <div class="accordion" id="accordionExample">
+
+                {{!-- Import du partial (collapse competences) --}}
+                {{> admin/competenceAdmin }}
+
+
+                {{!-- Import du partial (collapse presentation) --}}
+                {{> admin/presentationAdmin}}
+
+
+                {{!-- Import du partial (collapse utilisateur) --}}
+                {{> admin/utilisateurAdmin}}
+
+            </div>
+        </div>
+    </div>
+</section>
+

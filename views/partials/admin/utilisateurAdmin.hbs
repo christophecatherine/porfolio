@@ -1,0 +1,109 @@
+{{!--
+:partial
+Collapse Utilisateur Admin
+--}}
+
+<!-- collaps utilisateur -->
+<div class="card" style="margin-top: 2em;">
+    <div id="user" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card">
+            <table class="table">
+                <!-- table presentation -->
+                <!-- head de mon tableau -->
+                <thead>
+                    <tr>
+                        <td scope="col">image</td>
+                        <td scope="col">titre</td>
+                        <td scope="col">date</td>
+                        <td scope="col">description</td>
+                        <td scope="col">actions</td>
+                    </tr>
+                </thead>
+                <!-- body tableau -->
+                <tbody>
+                    <!-- item n°1 tableau -->
+                    <tr>
+                        <th scope="col">
+                            <img style="height: 35px;" src="/assets/image/html.png" alt=" ">
+                        </th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalEdit">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#modalDelete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- item n°2 tableau -->
+                    <tr>
+                        <th scope="col">
+                            <img style="height: 38px ; " src="/assets/image/css.png" alt=" ">
+                        </th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalEdit">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#modalDelete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- item n°3 tableau -->
+                    <tr>
+                        <th scope="col">
+                            <img style="height: 35px ; " src="/assets/image/sass.png" alt=" ">
+                        </th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalEdit">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#modalDelete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <!-- item n°4 tableau -->
+                    <tr>
+                        <th scope="col">
+                            <img style="height: 35px ; " src="/assets/image/js.png" alt=" ">
+                        </th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalEdit">
+                                <i class="far fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target="#modalDelete">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{{!-- Import partial modal edit utilisateur --}}
+{{> modals/modalEditUtilisateur }}
+
+{{!-- Import partial modal delete utilisateur --}}
+{{> modals/modalDeleteUtilisateur }}
