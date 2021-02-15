@@ -33,6 +33,12 @@ router.route('/competence/:id')
 router.route('/competence/create')
     .post(competenceController.create)
 
+// Article
+router.route('/article')
+    .get(articleController.get)
+    .post(articleController.post)
+    .delete(articleController.deleteAll)
+
 // Contact
 router.route('/contact')
     .get(contactController.get)

@@ -42,3 +42,13 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
+// Mongoose
+// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
+const urlDb = 'mongodb://localhost:27017/apiRest'
+mongoose.connect(urlDb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+// save session avec MongoDB
+const mongoStore = MongoStore(expressSession)
