@@ -12,10 +12,11 @@ const homeController = require('./controllers/homeController'),
     adminController = require('./controllers/adminController'),
     contactController = require('./controllers/contactController'),
     competenceController = require('./controllers/competenceController'),
-    projectController = require('./controllers/projectController')
-    /*
-     * Router
-     ***********/
+    projectController = require('./controllers/projectController');
+
+/*
+ * Router
+ ***********/
 
 // Home
 router.route('/')
@@ -25,10 +26,12 @@ router.route('/')
 router.route('/admin')
     .get(adminController.get)
 
-
-// Competence
+// Competences 
 router.route('/competence/:id')
     .get(competenceController.get)
+
+router.route('/competence/create')
+    .post(competenceController.create)
 
 // Contact
 router.route('/contact')
