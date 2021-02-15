@@ -1,0 +1,72 @@
+<!-- Modal Create -->
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal Create</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/competence/create" method="POST">
+                    <div class="field">
+                        <label class="label">Titre de l'article</label>
+                        <div class="control">
+                            {{!-- !!! ne pas oublier le name='name' pour l'arch du body !!! --}}
+                            <input class="input" type="text" name='title' placeholder="Text input">
+                        </div>
+                    </div>
+
+
+
+                    <div class="field">
+                        <label class="label">Contenu</label>
+                        <div class="control">
+                            {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
+                            <textarea class="textarea" name='content' placeholder="Textarea"></textarea>
+                            <script>
+                                CKEDITOR.replace('content', {
+                                    entities_latin: false,
+                                    uiColor: '#ff5cde'
+                                })
+                            </script>
+
+                            {{!--
+                            <script>
+                                CKEDITOR.replace('content');
+                            </script>--}}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">auteur</label>
+                        <div class="control">
+                            {{!-- !!! ne pas oublier le name='name' pour l'arch du body !!! --}}
+                            <input class="input" type="text" name='author' placeholder="Text input">
+                        </div>
+                    </div>
+                  
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            {{!-- !!! ne pas oublier le type='submit' pour la validation de l'envoie du formulaire !!!
+                            --}}
+                            <button type='submit' class="button is-link">Submit</button>
+                        </div>
+                        <div class="control">
+                            <button class="button is-link is-light">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Close
+                </button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Modal Create -->

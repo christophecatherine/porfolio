@@ -1,12 +1,17 @@
-{{!-- 
-    :partial
-    Collapse Compétences
- --}}
+{{!--
+:partial
+Collapse Compétences
+--}}
 
 <!-- collaps competence -->
 <div class="card" style="margin-top: 2em;">
     <div id="mySkill" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card">
+            <!--button create-->
+            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalCreate">
+                <i class="fas fa-plus"></i>
+            </button>
+            <!-- / button create-->
             <table class="table">
                 <!-- table competense -->
                 <!-- head de mon tableau -->
@@ -102,6 +107,9 @@
         </div>
     </div>
 </div>
+
+{{!-- Import partial modal Create competences --}}
+{{> modals/modalCreateCompetences }}
 
 {{!-- Import partial modal edit competences --}}
 {{> modals/modalEditCompetences }}
