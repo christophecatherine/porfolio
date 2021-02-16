@@ -1,15 +1,9 @@
-
-/*
- * Import Module
- ****************/
-const Article = require('../database/Article')
-
 /*
  * Controller
  *************/
 module.exports = {
     // Method Get
-    get: async (req, res) => {
+    get: async(req, res) => {
         // Variable de récupération de tout les Articles
         Article.find({}).lean()
             .exec((err, data) => {
@@ -23,15 +17,15 @@ module.exports = {
 
     },
     // Method Post
-    post: async (req, res) => {
+    post: async(req, res) => {
         // Variable de récupération de tout les Articles
         const data = await Article.find({})
-        // On demande au model Article de créé un Article
+            // On demande au model Article de créé un Article
         Article.create({
-            // Il nous créé un Article avec le model du formulaire envoyer (req.body)
-            ...req.body
-        })
-        // Et on redirige sur la page /article pour que notre nouvelle article soit charger au montage de la page
+                // Il nous créé un Article avec le model du formulaire envoyer (req.body)
+                ...req.body
+            })
+            // Et on redirige sur la page /article pour que notre nouvelle article soit charger au montage de la page
         res.redirect('/article')
 
     },
@@ -41,11 +35,11 @@ module.exports = {
         Article.deleteOne({
             // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
             _id: req.params.id
-            // ici nous avons un callback err
+                // ici nous avons un callback err
         }, (err) => {
             // Si nous avons pas d'erreur alors on redirige
             if (!err) return res.redirect('/article')
-            // Sinon on renvoit l'err
+                // Sinon on renvoit l'err
             else res.send(err)
         })
     },

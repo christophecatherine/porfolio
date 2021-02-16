@@ -7,9 +7,21 @@
 const
     express = require('express'),
     app = express(),
+    mongoose = require('mongoose'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000;
+
+// Mongoose
+// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
+const urlDb = 'mongodb://localhost:27017/porfolio'
+mongoose
+    .connect(urlDb, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(DB => console.log('connecter à la base de donnée'))
+    .catch(err => console.log(error))
 
 // Handlebars
 app.set('view engine', 'hbs');
@@ -43,12 +55,6 @@ app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
 
-// Mongoose
-// Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
-const urlDb = 'mongodb://localhost:27017/apiRest'
-mongoose.connect(urlDb, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+
 // save session avec MongoDB
-const mongoStore = MongoStore(expressSession)
+//const mongoStore = MongoStore(expressSession)

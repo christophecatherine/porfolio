@@ -26,14 +26,15 @@ Collapse Compétences
                 </thead>
                 <!-- body tableau -->
                 <tbody>
-                    <!-- item n°1 tableau -->
+                    <!-- item tableau -->
+                    {{#each dbCompetence }}
                     <tr>
                         <th scope="col">
                             <img style="height: 35px;" src="assets/image/html.png" alt=" ">
                         </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td> {{ title }} </td>
+                        <td> {{ author }} </td>
+                        <td> {{ content }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                 data-target="#modalEdit">
@@ -45,63 +46,7 @@ Collapse Compétences
                             </button>
                         </td>
                     </tr>
-                    <!-- item n°2 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 38px ; " src="/assets/image/css.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- item n°3 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 35px ; " src="/assets/image/sass.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- item n°4 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 35px ; " src="/assets/image/js.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    {{/each }}
                 </tbody>
             </table>
         </div>
