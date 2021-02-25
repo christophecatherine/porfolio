@@ -9,8 +9,6 @@ const PresentationSchema = new mongoose.Schema({
         type: Date,
         default: new Date()
     }
-
-
 })
 
 // Creer un model dans Presentation qui est associer a Presentation schema

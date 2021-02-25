@@ -1,32 +1,47 @@
 /*
  * Controller
  *************/
+const Article = require('../DB/models/Article')
+
 module.exports = {
     // Method Get
     get: async(req, res) => {
         // Variable de récupération de tout les Articles
-        Article.find({}).lean()
+        Article
+            .find({})
+            .lean()
             .exec((err, data) => {
                 // Petit log pour checker
                 console.log(data);
                 // Et on renvoit la page article avec notre objet de tout nos article pour agrémenté la liste
-                res.render('article', {
-                    dbArticle: data
-                })
+                // res.render('article', {
+                //     dbArticle: data
+                // })
+                res.json(data)
             })
 
     },
     // Method Post
     post: async(req, res) => {
-        // Variable de récupération de tout les Articles
-        const data = await Article.find({})
-            // On demande au model Article de créé un Article
-        Article.create({
+        // On demande au model Article de créé un Article
+        Article
+            .create({
                 // Il nous créé un Article avec le model du formulaire envoyer (req.body)
                 ...req.body
+            }, (err, data) => {
+                Article
+                    .find({})
+                    .lean()
+                    .exec((err, data) => {
+                        // Petit log pour checker
+                        console.log(data);
+                        // Et on renvoit la page article avec notre objet de tout nos article pour agrémenté la liste
+                        // res.render('article', {
+                        //     dbArticle: data
+                        // })
+                        res.json(data)
+                    })
             })
-            // Et on redirige sur la page /article pour que notre nouvelle article soit charger au montage de la page
-        res.redirect('/article')
 
     },
     // Method Delete One

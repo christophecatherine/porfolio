@@ -11,9 +11,15 @@ module.exports = {
     get: (req, res) => {
         res.render('presentationId')
     },
+
+
+    //Method post
     post: (req, res) => {
 
     },
+
+
+    //Method create(post)
     create: (req, res) => {
         console.log('Controller create presentation')
         console.log(req.body)

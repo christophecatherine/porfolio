@@ -5,7 +5,6 @@
 /*
  * Import Module
  ****************/
-const Article = require('../DB/models/Article')
 
 // Import de Mongoose
 const mongoose = require('mongoose')

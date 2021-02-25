@@ -5,16 +5,34 @@
 // const dateformat = require('datformat')
 
 // Import de model
+const Article = require('../DB/models/Article');
 const Competence = require('../DB/models/Competence')
 
+//Method get
 module.exports = {
-    // Method Get
-    getId: (req, res) => {
-        res.render('competenceId')
-    },
     get: (req, res) => {
-        res.render('competence')
+        // res.render('competence')
+        Competence
+            .find()
+            .exec((err, data) => {
+                if (err) console.log(err);
+                res.json(data)
+            })
     },
+
+    //Method getId
+    getId: (req, res) => {
+        console.log(req.params)
+        Competence
+            .findById(req.params.id)
+            .exec((err, data) => {
+                if (err) console.log(err);
+                res.json(data)
+            })
+    },
+
+
+    // Method create(post)
     create: (req, res) => {
         console.log('Controller create competence')
         console.log(req.body)
@@ -26,8 +44,7 @@ module.exports = {
             .create({
             // On definit nos data pour la création de notre nouvelle compétences
             title: b.title,
-            content: b.content,
-            author: b.author
+
 
             // Notre callback de validation de la function create
         }, (err, data) => {
@@ -37,7 +54,42 @@ module.exports = {
             console.log(data)
 
             // On redirige sur le controller admin (ou seront charger nos data)
-            res.redirect('/admin')
+            //  res.redirect('/admin')
+            res.json(data)
         })
-    }
+    },
+    //Method put
+    editOne: (req, res) => {
+        const b = req.body
+        console.log('BODY: ', b)
+        console.log('PARAMS: ', req.params)
+
+        Competence
+            .findByIdAndUpdate(req.params.id, {
+                title: b.title
+            }, (err, data) => {
+                if (err) console.log(err)
+                res.json(data)
+            })
+
+    },
+
+    // Method delete one
+    deleteOne: (req, res) => {
+        console.log(req)
+            // Fonction de suppression de un Articles rechercher par son _id
+        Competence
+            .deleteOne({
+                // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
+                _id: req.params.id
+                    // ici nous avons un callback err
+            }, (err) => {
+                // Si nous avons pas d'erreur alors on redirige
+                if (err) console.log(err)
+                    // Sinon on renvoit l'err
+                res.json({
+                    succes: req.params.id + ' // à bien été supprimer'
+                })
+            })
+    },
 }

@@ -14,7 +14,9 @@ const homeController = require('./controllers/homeController'),
     competenceController = require('./controllers/competenceController'),
     projectController = require('./controllers/projectController'),
     articleController = require('./controllers/articleController'),
-    presentationController = require('./controllers/presentationController');
+    presentationController = require('./controllers/presentationController'),
+    messageController = require('./controllers/messageController');
+
 /*
  * Router
  ***********/
@@ -30,15 +32,32 @@ router.route('/admin')
 // Competences 
 router.route('/competences')
     .get(competenceController.get)
-router.route('/competence/:id')
-    .get(competenceController.getId)
-
-router.route('/competence/create')
     .post(competenceController.create)
 
+router.route('/competences/:id')
+    .get(competenceController.getId)
+    .put(competenceController.editOne)
+    .delete(competenceController.deleteOne)
+
+//Message
+router.route('/message')
+    .get(messageController.get)
+    .post(messageController.create)
+
+router.route('/messageId/:id')
+    .delete(messageController.deleteOne)
+
+
+
 // Presentation
-router.route('/presentation/create')
-    .post(presentationController.post)
+router.route('/presentation')
+    .get(presentationController.get)
+    .post(presentationController.create)
+
+router.route('/presentation/:id')
+    .get(presentationController.getId)
+    .put(presentationController.editOne)
+    .delete(presentationController.deleteOne)
 
 // Project
 router.route('/project')
