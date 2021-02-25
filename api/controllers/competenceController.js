@@ -71,7 +71,6 @@ module.exports = {
                 if (err) console.log(err)
                 res.json(data)
             })
-
     },
 
     // Method delete one
