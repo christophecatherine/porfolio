@@ -15,9 +15,12 @@ const homeController = require('./controllers/homeController'),
     projectController = require('./controllers/projectController'),
     articleController = require('./controllers/articleController'),
     presentationController = require('./controllers/presentationController'),
-    messageController = require('./controllers/messageController');
+    messageController = require('./controllers/messageController'),
+    userController = require('./controllers/userController'),
+    commentaireController = require('./controllers/commentaireController');
 
 /*
+
  * Router
  ***********/
 
@@ -47,6 +50,19 @@ router.route('/message')
 router.route('/messageId/:id')
     .delete(messageController.deleteOne)
 
+//User
+router.route('/register')
+    .post(userController.register)
+
+//Commentaire
+router.route('/commentaire')
+    .get(commentaireController.get)
+    // .post(commentaireController.create)
+
+router.route('/commentaire/:id')
+    .get(commentaireController.get)
+    .post(commentaireController.create)
+    .delete(commentaireController.deleteOne)
 
 
 // Presentation
@@ -56,7 +72,6 @@ router.route('/presentation')
 
 router.route('/presentation/:id')
     .get(presentationController.getId)
-    .put(presentationController.editOne)
     .delete(presentationController.deleteOne)
 
 // Project

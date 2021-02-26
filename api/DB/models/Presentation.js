@@ -1,10 +1,17 @@
 // Appel de mongoose 
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const Commentaire = require('./Commentaire')
 
 //Creer un nouvel Presentation dans schema 
 const PresentationSchema = new mongoose.Schema({
 
     title: String,
+    comment: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Commentaire'
+    }],
     createDate: {
         type: Date,
         default: new Date()

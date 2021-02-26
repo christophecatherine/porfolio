@@ -10,7 +10,8 @@ const
     mongoose = require('mongoose'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
-    port = process.env.PORT || 3000;
+    port = process.env.PORT || 3000,
+    methodeOverride = require("method-override");
 
 // Mongoose
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
@@ -40,6 +41,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+//Method-override
+app.use(methodeOverride("_method"));
 
 // Notre router permettra de diriger des chemins 'URL' sur les actions 'Controller' qui distriburont nos pages, ... 
 // CRUD = GET / POST / PUT / DELETE
