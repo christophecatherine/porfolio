@@ -1,5 +1,5 @@
 <!-- Modal Create -->
-<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCreateCompetences" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -18,9 +18,9 @@
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Content:</label>
                             {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
-                            <textarea class="textarea" name='content' placeholder="Textarea"></textarea>
+                            <textarea class="textarea" id='contentCreateCompetences' name='content' placeholder="Textarea"></textarea>
                             <script>
-                                CKEDITOR.replace('content', {
+                                CKEDITOR.replace('contentCreateCompetences', {
                                     entities_latin: false,
                                     uiColor: '#ff5cde'
                                 })

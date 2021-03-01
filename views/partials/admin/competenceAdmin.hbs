@@ -9,7 +9,7 @@ Collapse Compétences
         <div class="card">
             <!--button create-->
             <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
-                data-toggle="modal" data-target="#modalCreate">
+                data-toggle="modal" data-target="#modalCreateCompetences">
                 <i class="fas fa-plus"></i>
             </button>
 
@@ -22,9 +22,7 @@ Collapse Compétences
                 <!-- head de mon tableau -->
                 <thead>
                     <tr>
-                        <td scope="col">image</td>
                         <td scope="col">titre</td>
-                        <td scope="col">date</td>
                         <td scope="col">description</td>
                         <td scope="col">actions</td>
                     </tr>
@@ -34,11 +32,7 @@ Collapse Compétences
                     <!-- item tableau -->
                     {{#each dbCompetence }}
                     <tr>
-                        <th scope="col">
-                            <img style="height: 35px;" src="assets/image/html.png" alt=" ">
-                        </th>
                         <td> {{ title }} </td>
-                        <td> {{ author }} </td>
                         <td> {{ content }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"

@@ -25,6 +25,8 @@ module.exports = {
         // console.log(req.params)
         Competence
             .findById(req.params.id)
+            .populate('comment')
+            .lean()
             .exec((err, data) => {
                 if (err) console.log(err);
                 res.json(data)

@@ -8,11 +8,16 @@ Collapse Présentation Admin
 <div class="card" style="margin-top: 2em;">
     <div id="presentation" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card">
-             <!--button create-->
-            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"data-toggle="modal" data-target="#modalCreate">
+            <!--button create-->
+            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
+                data-toggle="modal" data-target="#modalCreatePresentation">
                 <i class="fas fa-plus"></i>
             </button>
-             <!-- / button create-->
+            <!-- / button create-->
+
+            {{!-- Import partial modal Create presentations --}}
+            {{> modals/modalCreatePresentation }}
+
             <table class="table">
                 <!-- table presentation -->
                 <!-- head de mon tableau -->
@@ -27,7 +32,7 @@ Collapse Présentation Admin
                 </thead>
                 <!-- body tableau -->
                 <tbody>
-                     <!-- item tableau -->
+                    <!-- item tableau -->
                     {{#each dbPresentation }}
                     <tr>
                         <th scope="col">
@@ -38,15 +43,23 @@ Collapse Présentation Admin
                         <td> {{ content }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
+                                data-target="#modalEdit{{_id}}">
                                 <i class="far fa-edit"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
+                                data-target="#modalDelete{{_id}}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>
+
+                    {{!-- Import partial modal edit presentation --}}
+                    {{> modals/modalEditPresentation }}
+
+                    {{!-- Import partial modal delete presentation --}}
+                    {{> modals/modalDeletePresentation }}
+
+
                     {{/each }}
                 </tbody>
             </table>
@@ -54,8 +67,3 @@ Collapse Présentation Admin
     </div>
 </div>
 
-{{!-- Import partial modal edit presentation --}}
-{{> modals/modalEditPresentation }}
-
-{{!-- Import partial modal delete presentation --}}
-{{> modals/modalDeletePresentation }}

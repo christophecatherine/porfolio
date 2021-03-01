@@ -4,6 +4,7 @@
 // Import module
 // const dateformat = require('datformat')
 // Import de model
+const Article = require('../DB/models/Article');
 const Presentation = require('../DB/models/Presentation')
 
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     //Method get
     get: (req, res) => {
         // res.render('presentation')
-        console.log('fgfreg')
+
         Presentation
             .find()
             .exec((err, data) => {
@@ -25,7 +26,7 @@ module.exports = {
     // Method GetId
     getId: (req, res) => {
         // res.render('presentationId')
-        console.log(req.params)
+        // console.log(req.params)
         Presentation
             .findById(req.params.id)
             .populate('comment')
@@ -48,6 +49,7 @@ module.exports = {
             .create({
             // On definit nos data pour la création de notre nouvelle compétences
             title: c.title,
+            content: c.content
 
 
             // Notre callback de validation de la function create
@@ -58,32 +60,31 @@ module.exports = {
             console.log(data)
 
             // On redirige sur le controller admin (ou seront charger nos data)
-            // res.redirect('/admin')
-            res.json(data)
+            res.redirect('/admin')
+                //res.json(data)
         })
     },
 
     // Method put 
     editOne: (req, res) => {
-
-        console.log('BODY', req.body)
-        console.log('PARAMS: ', req.params)
+        const c = req.body
+        console.log('EDITONE PRESENTATION BODY', c)
+        console.log('EDITONE PRESENTATION PARAMS: ', req.params.id)
 
         Presentation
-            .updateOne({
-                _id: req.params.id
-            }, {
-                title: req.body.title
+        Competence
+            .findByIdAndUpdate(req.params.id, {
+                title: c.title
             }, (err, data) => {
                 if (err) console.log(err)
-                res.json(data)
+                    // res.json(data)
+                res.redirect('/admin')
             })
     },
 
     // Method delete one 
     deleteOne: (req, res) => {
-        console.log(req)
-
+        // consolog.log("Delete Presentation: ", req.params.id)
         Presentation
             .deleteOne({
 
@@ -95,9 +96,10 @@ module.exports = {
                 if (err) console.log(err)
                     // Sinon on renvoit l'err
 
-                res.json({
-                    succes: req.params.id + '// à bien été supprimer'
-                })
+                // res.json({
+                // succes: req.params.id + '// à bien été supprimer'
+                // })
+                res.redirect('/admin')
             })
-    }
+    },
 }

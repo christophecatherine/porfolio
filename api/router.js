@@ -65,7 +65,7 @@ router.route('/commentaire/:id')
     .delete(commentaireController.deleteOne)
 
 
-// Presentation
+// Presentations
 router.route('/presentation')
     .get(presentationController.get)
     .post(presentationController.create)
@@ -77,7 +77,6 @@ router.route('/presentation/:id')
 // Project
 router.route('/project')
     .get(projectController.get)
-
 
 
 // Article
