@@ -57,7 +57,7 @@ router.route('/register')
 //Commentaire
 router.route('/commentaire')
     .get(commentaireController.get)
-    // .post(commentaireController.create)
+    .post(commentaireController.create)
 
 router.route('/commentaire/:id')
     .get(commentaireController.get)
