@@ -8,9 +8,14 @@ Collapse Compétences
     <div id="mySkill" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card">
             <!--button create-->
-            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modalCreate">
+            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
+                data-toggle="modal" data-target="#modalCreate">
                 <i class="fas fa-plus"></i>
             </button>
+
+            {{!-- Import partial modal Create competences --}}
+            {{> modals/modalCreateCompetences }}
+
             <!-- / button create-->
             <table class="table">
                 <!-- table competense -->
@@ -37,27 +42,25 @@ Collapse Compétences
                         <td> {{ content }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
+                                data-target="#modalEdit{{_id}}">
                                 <i class="far fa-edit"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
+                                data-target="#modalDelete{{_id}}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>
+
+                    {{!-- Import partial modal edit competences --}}
+                    {{> modals/modalEditCompetences }}
+
+                    {{!-- Import partial modal delete competences --}}
+                    {{> modals/modalDeleteCompetences }}
+
                     {{/each }}
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-{{!-- Import partial modal Create competences --}}
-{{> modals/modalCreateCompetences }}
-
-{{!-- Import partial modal edit competences --}}
-{{> modals/modalEditCompetences }}
-
-{{!-- Import partial modal delete competences --}}
-{{> modals/modalDeleteCompetences }}

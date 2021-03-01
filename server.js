@@ -24,6 +24,10 @@ mongoose
     .then(DB => console.log('connecter à la base de donnée'))
     .catch(err => console.log(error))
 
+
+//Method-override
+app.use(methodeOverride("_method"));
+
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
@@ -41,9 +45,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-//Method-override
-app.use(methodeOverride("_method"));
 
 // Notre router permettra de diriger des chemins 'URL' sur les actions 'Controller' qui distriburont nos pages, ... 
 // CRUD = GET / POST / PUT / DELETE

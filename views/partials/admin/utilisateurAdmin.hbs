@@ -7,6 +7,11 @@ Collapse Utilisateur Admin
 <div class="card" style="margin-top: 2em;">
     <div id="user" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card">
+            <!--button create-->
+            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"data-toggle="modal" data-target="#modalCreate">
+                <i class="fas fa-plus"></i>
+            </button>
+            <!-- / button create-->
             <table class="table">
                 <!-- table presentation -->
                 <!-- head de mon tableau -->
@@ -22,6 +27,7 @@ Collapse Utilisateur Admin
                 <!-- body tableau -->
                 <tbody>
                     <!-- item n°1 tableau -->
+                    {{#each dbUtilisateur }}
                     <tr>
                         <th scope="col">
                             <img style="height: 35px;" src="/assets/image/html.png" alt=" ">
@@ -40,7 +46,9 @@ Collapse Utilisateur Admin
                             </button>
                         </td>
                     </tr>
-                    <!-- item n°2 tableau -->
+                    {{/each }}
+                    
+                    {{!-- <!-- item n°2 tableau -->
                     <tr>
                         <th scope="col">
                             <img style="height: 38px ; " src="/assets/image/css.png" alt=" ">
@@ -96,14 +104,17 @@ Collapse Utilisateur Admin
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
-                    </tr>
+                    </tr> --}} 
                 </tbody>
             </table>
         </div>
     </div>
-</section>
-{{!-- Import partial modal edit utilisateur --}}
-{{> modals/modalEditUtilisateur }}
+    </section>
+    {{!-- Import partial modal edit utilisateur --}}
+    {{> modals/modalEditUtilisateur }}
 
-{{!-- Import partial modal delete utilisateur --}}
-{{> modals/modalDeleteUtilisateur }}
+    {{!-- Import partial modal delete utilisateur --}}
+    {{> modals/modalDeleteUtilisateur }}
+
+    {{!-- Import partial modal delete utilisateur --}}
+    {{> modals/modalDeleteUtilisateur }}
