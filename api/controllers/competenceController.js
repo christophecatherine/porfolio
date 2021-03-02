@@ -10,12 +10,14 @@ const Competence = require('../DB/models/Competence')
 //Method get
 module.exports = {
     get: (req, res) => {
-        // res.render('competence')
+       
         Competence
             .find()
             .exec((err, data) => {
                 if (err) console.log(err);
-                res.json(data)
+               // res.json(data)
+                res.render('competence')
+               
             })
     },
 

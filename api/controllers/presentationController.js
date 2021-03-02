@@ -15,9 +15,13 @@ module.exports = {
 
         Presentation
             .find()
+            .lean()
             .exec((err, data) => {
                 if (err) console.log(err);
-                res.json(data)
+                //res.json(data)
+                res.render('project' , {
+                    dbPresentation: data
+                }) 
             })
     },
 

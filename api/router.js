@@ -5,6 +5,7 @@ const express = require('express'),
     router = express.Router(),
     path = require('path')
 
+
 /*
  * Controller
  *************/
@@ -15,8 +16,8 @@ const homeController = require('./controllers/homeController'),
     presentationController = require('./controllers/presentationController'),
     messageController = require('./controllers/messageController'),
     userController = require('./controllers/userController'),
-    commentaireController = require('./controllers/commentaireController');
-
+    commentaireController = require('./controllers/commentaireController'),
+    authController = require('./controllers/authController');
 /*
 
  * Router
@@ -41,7 +42,7 @@ router.route('/competences/:id')
     .delete(competenceController.deleteOne)
 
 //Message
-router.route('/contact')
+router.route('/message')
     .get(messageController.get)
     .post(messageController.create)
 
@@ -65,7 +66,6 @@ router.route('/commentaire/:id')
 
 // Presentations
 router.route('/presentation')
-    .get(presentationController.get)
     .post(presentationController.create)
 
 router.route('/presentation/:id')
@@ -73,9 +73,18 @@ router.route('/presentation/:id')
     .delete(presentationController.deleteOne)
     .put(presentationController.editOne)
 
+// Project
+router.route('/project')
+    .get(presentationController.get)
+
 // Contact
 router.route('/contact')
     .get(contactController.get)
+
+// Login
+router.route('/login')
+    .get(authController.get)
+
 
 
 /***********
