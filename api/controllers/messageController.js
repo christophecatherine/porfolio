@@ -23,19 +23,17 @@ module.exports = {
         // On lui demande la function create
             .create({
             // On definit nos data pour la création de notre nouvelle message
-            title: b.title,
-
-
+            ...req.body
             // Notre callback de validation de la function create
         }, (err, data) => {
             // En cas d'err il nous log l'err
             if (err) console.log(err);
-            // Compétence cree (avec le _id)
+            // Message cree (avec le _id)
             console.log(data)
 
             // On redirige sur le controller admin (ou seront charger nos data)
-            //  res.redirect('/admin')
-            res.json(data)
+            res.redirect('/admin')
+                //res.json(data)
         })
     },
 
@@ -44,15 +42,18 @@ module.exports = {
         console.log(req)
             // Fonction de suppression d'un message'
         Message
-            .deleteOne({ _id: req.params.id },
+            .deleteOne({
+                    _id: req.params.id
+                },
                 // ici nous avons un callback err
                 (err) => {
                     // Si nous avons pas d'erreur alors on redirige
                     if (err) console.log(err)
                         // Sinon on renvoit l'err
-                    res.json({
-                        succes: 'à bien été supprimer'
-                    })
+                        // res.json({
+                        //     succes: 'à bien été supprimer'
+                        // })
+                    res.redirect('/admin')
                 })
     },
 }

@@ -1,0 +1,63 @@
+{{!--
+Partials: Liste Commentaire
+--}}
+
+<div class="container">
+    <div class='row'>
+        <ul class="list-unstyled">
+            {{!-- Liste commentaire --}}
+
+            {{#each presentationID.comment }}
+
+            <li class="media">
+                <img src="/assets/image/sass.png" class="mr-3" alt="...">
+                <div class="media-body row">
+                    <div class="col-md-10">
+                        <h5 class="mt-0 mb-1">{{ author }}</h5>
+                        <p> {{ content }} </p>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                            data-target="#modalDeleteComment{{_id}}">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </li>
+
+            {{> modals/modalDeleteComment }}
+
+            {{/each }}
+
+        </ul>
+    </div>
+</div>
+
+
+{{!-- Ajouter un nouveau commentaire --}}
+
+<div class="container">
+    <div class="row">
+        {{!-- Formulaire Ajouter un commentaire --}}
+        <form class="row" action="/commentaire/{{presentationID._id}}" method="post">
+            <!-- Input Username -->
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="author" placeholder="Username" />
+                </div>
+            </div>
+
+            <!-- Input Message -->
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea class="form-control" id="message-text" name="content" placeholder="Message"></textarea>
+                </div>
+            </div>
+
+            <!-- Boutton -->
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary m-2">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</div>

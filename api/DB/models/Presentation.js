@@ -8,6 +8,7 @@ const Commentaire = require('./Commentaire')
 const PresentationSchema = new mongoose.Schema({
 
     title: String,
+    content: String,
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Commentaire'

@@ -4,7 +4,6 @@
 // Import module
 // const dateformat = require('datformat')
 // Import de model
-const Article = require('../DB/models/Article');
 const Presentation = require('../DB/models/Presentation')
 
 module.exports = {
@@ -22,18 +21,20 @@ module.exports = {
             })
     },
 
-
     // Method GetId
     getId: (req, res) => {
-        // res.render('presentationId')
-        // console.log(req.params)
+        console.log('PageID: ', req.params.id)
         Presentation
             .findById(req.params.id)
             .populate('comment')
             .lean()
             .exec((err, data) => {
                 if (err) console.log(err);
-                res.json(data)
+                // res.json(data)
+                console.log(data)
+                res.render('presentationID', {
+                    presentationID: data
+                })
             })
     },
 
@@ -41,15 +42,15 @@ module.exports = {
     create: (req, res) => {
         console.log('Controller create presentation')
         console.log(req.body)
-        const c = req.body
+        const b = req.body
 
         // On appel notre model (constructeur)
         Presentation
         // On lui demande la function create
             .create({
             // On definit nos data pour la création de notre nouvelle compétences
-            title: c.title,
-            content: c.content
+            title: b.title,
+            content: b.content
 
 
             // Notre callback de validation de la function create
@@ -67,14 +68,13 @@ module.exports = {
 
     // Method put 
     editOne: (req, res) => {
-        const c = req.body
-        console.log('EDITONE PRESENTATION BODY', c)
+        const b = req.body
+        console.log('EDITONE PRESENTATION BODY', b)
         console.log('EDITONE PRESENTATION PARAMS: ', req.params.id)
 
         Presentation
-        Competence
             .findByIdAndUpdate(req.params.id, {
-                title: c.title
+                ...req.body
             }, (err, data) => {
                 if (err) console.log(err)
                     // res.json(data)

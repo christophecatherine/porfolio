@@ -12,8 +12,6 @@ const homeController = require('./controllers/homeController'),
     adminController = require('./controllers/adminController'),
     contactController = require('./controllers/contactController'),
     competenceController = require('./controllers/competenceController'),
-    projectController = require('./controllers/projectController'),
-    articleController = require('./controllers/articleController'),
     presentationController = require('./controllers/presentationController'),
     messageController = require('./controllers/messageController'),
     userController = require('./controllers/userController'),
@@ -43,7 +41,7 @@ router.route('/competences/:id')
     .delete(competenceController.deleteOne)
 
 //Message
-router.route('/message')
+router.route('/contact')
     .get(messageController.get)
     .post(messageController.create)
 
@@ -73,17 +71,7 @@ router.route('/presentation')
 router.route('/presentation/:id')
     .get(presentationController.getId)
     .delete(presentationController.deleteOne)
-
-// Project
-router.route('/project')
-    .get(projectController.get)
-
-
-// Article
-router.route('/article')
-    .get(articleController.get)
-    .post(articleController.post)
-    .delete(articleController.deleteAll)
+    .put(presentationController.editOne)
 
 // Contact
 router.route('/contact')

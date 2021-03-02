@@ -1,5 +1,6 @@
 <!-- Modal Create -->
-<div class="modal fade" id="modalCreatePresentation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalCreatePresentation" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,31 +10,30 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-body">
-                    <form method="post" action="/presentation">
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Titre:</label>
-                            <input type="text" class="form-control" name='title' id="recipient-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">Content:</label>
-                            {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
-                            <textarea class="textarea" name='contentCreatePresentation' placeholder="Textarea"></textarea>
-                            <script>
-                                CKEDITOR.replace('contentCreatePresentation', {
-                                    entities_latin: false,
-                                    uiColor: '#ff5cde'
-                                })
-                            </script>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Send message</button>
-                        </div>
-                    </form>
-                </div>
+                <form method="post" action="/presentation">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Titre:</label>
+                        <input type="text" class="form-control" name='title' id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Content:</label>
+                        {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
+                        <textarea class="textarea" id='contentCreatePresentation' name='content'
+                            placeholder="Textarea"></textarea>
+                        <script>
+                            CKEDITOR.replace('contentCreatePresentation', {
+                                entities_latin: false,
+                                uiColor: '#ff5cde'
+                            })
+                        </script>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
+                </form>
             </div>
-           
+
             <div class="modal-footer">
                 {{!-- Rien a mettre --}}
             </div>

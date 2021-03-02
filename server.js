@@ -19,7 +19,9 @@ const urlDb = 'mongodb://localhost:27017/porfolio'
 mongoose
     .connect(urlDb, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
+
     })
     .then(DB => console.log('connecter à la base de donnée'))
     .catch(err => console.log(error))

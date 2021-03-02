@@ -7,7 +7,7 @@
 // Import de model
 const Presentation = require('../DB/models/Presentation');
 const Commentaire = require('../DB/models/Commentaire');
-const articleController = require('./articleController');
+//const articleController = require('./articleController')
 
 //Method get
 module.exports = {
@@ -48,8 +48,7 @@ module.exports = {
 
     // Method delete one
     deleteOne: (req, res) => {
-        console.log(req)
-            // Fonction de suppression de un Articles rechercher par son _id
+        // Fonction de suppression de un Articles rechercher par son _id
         Commentaire
             .deleteOne({
                 // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
@@ -59,9 +58,10 @@ module.exports = {
                 // Si nous avons pas d'erreur alors on redirige
                 if (err) console.log(err)
                     // Sinon on renvoit l'err
-                res.json({
-                    succes: req.params.id + ' // à bien été supprimer'
-                })
+                    // res.json({
+                    //     succes: req.params.id + ' // à bien été supprimer'
+                    // })
+                res.redirect('/presentation/' + req.params.id)
             })
     },
 }

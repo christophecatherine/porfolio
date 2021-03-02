@@ -5,7 +5,6 @@
 // const dateformat = require('datformat')
 
 // Import de model
-const Article = require('../DB/models/Article');
 const Competence = require('../DB/models/Competence')
 
 //Method get
@@ -69,7 +68,7 @@ module.exports = {
 
         Competence
             .findByIdAndUpdate(req.params.id, {
-                title: b.title
+                ...req.body
             }, (err, data) => {
                 if (err) console.log(err)
                     // res.json(data)

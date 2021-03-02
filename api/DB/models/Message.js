@@ -1,10 +1,18 @@
 // Appel de mongoose 
 const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 //Creer un nouvel Message dans schema 
 const MessageSchema = new mongoose.Schema({
 
-    title: String,
+    username: String,
+    email: String,
+    sujet: String,
+    message: String,
+    createDate: {
+        type: Date,
+        default: new Date()
+    }
 
 })
 

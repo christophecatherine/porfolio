@@ -12,27 +12,35 @@ Modale Edit Présentation
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="POST" action="/presentation/{{_id}}?_method=PUT">
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Titre:</label>
-                    <input type="text" class="form-control" name='title' id="recipient-name" value='{{ title }}'>
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Content:</label>
-                    {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
-                    <textarea class="textarea" name='contentEditPresentation' placeholder="Textarea" value='{{ content }}'></textarea>
-                    <script>
-                        CKEDITOR.replace('contentEditPresentation', {
-                            entities_latin: false,
-                            uiColor: '#ff5cde'
-                        })
-                    </script>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send message</button>
-                </div>
-            </form>
+            <div class="modal-body">
+                <form method="POST" action="/presentation/{{_id}}?_method=PUT">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Titre:</label>
+                        <input type="text" class="form-control" name='title' id="recipient-name" value='{{ title }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Content:</label>
+                        {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
+                        <textarea class="textarea" id='contentEditPresentation{{ _id }}' name='content'
+                            placeholder="Textarea"> {{ content }} </textarea>
+                        <script>
+                            const ed{{ _id }} = CKEDITOR.replace(`contentEditPresentation{{_id}}`, {
+                                entities_latin: false,
+                                uiColor: '#ff5cde'
+                            })
+                            ed{{ _id }}.on('change', function (e) {//modification du contenu de l'éditeur
+                                console.log(e.editor.getData())
+                            })
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send message</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            </div>
         </div>
     </div>
 </div>

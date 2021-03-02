@@ -6,34 +6,28 @@ Collapse Compétences
 <!-- collaps competence -->
 <div class="card" style="margin-top: 2em;">
     <div id="mySkill" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-        <div class="card">
-            <!--button create-->
-            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
-                data-toggle="modal" data-target="#modalCreateCompetences">
-                <i class="fas fa-plus"></i>
-            </button>
+        <div class="card">          
 
-            {{!-- Import partial modal Create competences --}}
-            {{> modals/modalCreateCompetences }}
-
-            <!-- / button create-->
+            <!-- / button Message -->
             <table class="table">
-                <!-- table competense -->
+                <!-- table message -->
                 <!-- head de mon tableau -->
                 <thead>
                     <tr>
-                        <td scope="col">titre</td>
-                        <td scope="col">description</td>
+                        <td scope="col">username</td>
+                        <td scope="col">email</td>
+                        <td scope="col">sujet</td>
                         <td scope="col">actions</td>
                     </tr>
                 </thead>
                 <!-- body tableau -->
                 <tbody>
                     <!-- item tableau -->
-                    {{#each dbCompetence }}
+                    {{#each dbMessage }}
                     <tr>
-                        <td> {{ title }} </td>
-                        <td> {{ content }} </td>
+                        <td> {{ username }} </td>
+                        <td> {{ email }} </td>
+                        <td> {{ sujet }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                 data-target="#modalEdit{{_id}}">
@@ -46,11 +40,11 @@ Collapse Compétences
                         </td>
                     </tr>
 
-                    {{!-- Import partial modal edit competences --}}
-                    {{> modals/modalEditCompetences }}
+                    {{!-- Import partial modal edit message --}}
+                    {{> modals/modalViewMessage }}
 
-                    {{!-- Import partial modal delete competences --}}
-                    {{> modals/modalDeleteCompetences }}
+                    {{!-- Import partial modal delete message --}}
+                    {{> modals/modalDeleteMessage }}
 
                     {{/each }}
                 </tbody>

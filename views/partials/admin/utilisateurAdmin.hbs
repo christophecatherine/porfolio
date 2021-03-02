@@ -8,10 +8,12 @@ Collapse Utilisateur Admin
     <div id="user" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card">
             <!--button create-->
-            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"data-toggle="modal" data-target="#modalCreate">
+            <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
+                data-toggle="modal" data-target="#modalCreate">
                 <i class="fas fa-plus"></i>
             </button>
             <!-- / button create-->
+            
             <table class="table">
                 <!-- table presentation -->
                 <!-- head de mon tableau -->
@@ -32,89 +34,34 @@ Collapse Utilisateur Admin
                         <th scope="col">
                             <img style="height: 35px;" src="/assets/image/html.png" alt=" ">
                         </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td> {{ title }} </td>
+                        <td> {{ author }} </td>
+                        <td> {{ content }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
+                                data-target="#modalEdit{{_id}}">
                                 <i class="far fa-edit"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
+                                data-target="#modalDelete{{_id}}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>
+
+  {{!-- Import partial modal edit presentation --}}
+                    {{> modals/modalEditUtilisateur }}
+
+                    {{!-- Import partial modal delete presentation --}}
+                    {{> modals/modalDeleteUtilisateur }}
+
+
                     {{/each }}
-                    
-                    {{!-- <!-- item n°2 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 38px ; " src="/assets/image/css.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- item n°3 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 35px ; " src="/assets/image/sass.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <!-- item n°4 tableau -->
-                    <tr>
-                        <th scope="col">
-                            <img style="height: 35px ; " src="/assets/image/js.png" alt=" ">
-                        </th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit">
-                                <i class="far fa-edit"></i>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </td>
-                    </tr> --}} 
+
+
                 </tbody>
             </table>
         </div>
     </div>
     </section>
-    {{!-- Import partial modal edit utilisateur --}}
-    {{> modals/modalEditUtilisateur }}
-
-    {{!-- Import partial modal delete utilisateur --}}
-    {{> modals/modalDeleteUtilisateur }}
-
-    {{!-- Import partial modal delete utilisateur --}}
-    {{> modals/modalDeleteUtilisateur }}
+   
