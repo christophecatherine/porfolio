@@ -15,7 +15,7 @@ const
 
 // Mongoose
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
-const urlDb = 'mongodb://localhost:27017/porfolio'
+const urlDb = 'mongodb+srv://MonBlog:coka$@blog.qbnke.mongodb.net/portfolio?retryWrites=true&w=majority'
 mongoose
     .connect(urlDb, {
         useNewUrlParser: true,
