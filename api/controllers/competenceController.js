@@ -10,14 +10,14 @@ const Competence = require('../DB/models/Competence')
 //Method get
 module.exports = {
     get: (req, res) => {
-       
+
         Competence
             .find()
             .exec((err, data) => {
                 if (err) console.log(err);
-               // res.json(data)
+                // res.json(data)
                 res.render('competence')
-               
+
             })
     },
 
@@ -62,6 +62,7 @@ module.exports = {
                 // res.json(data)
         })
     },
+
     //Method put
     editOne: (req, res) => {
         const b = req.body

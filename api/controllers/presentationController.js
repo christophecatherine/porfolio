@@ -2,7 +2,7 @@
  * Controller
  *************/
 // Import module
-// const dateformat = require('datformat')
+// const dateformat = require('dataformat')
 // Import de model
 const Presentation = require('../DB/models/Presentation')
 
@@ -19,9 +19,10 @@ module.exports = {
             .exec((err, data) => {
                 if (err) console.log(err);
                 //res.json(data)
-                res.render('project' , {
-                    dbPresentation: data
-                }) 
+                res.render('project', {
+                    dbPresentation: data,
+                    search: 'input'
+                })
             })
     },
 

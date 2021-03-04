@@ -11,28 +11,83 @@ Page project
         <h2>Une partie des projects sur lesquels j'ai travaillé</h2>
     </div>
 
-    <!-- MON PROJECT1 -->
-    <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
-        
-        {{#each dbPresentation }}
-
-        <div class="col-md-3 col-sm-6 col-12">
-            <div class="card">
-                <div class="border border-dark">
-                    <div class="card-body">
-                        <h5 class="card-title text-center"> {{ title }} </h5>
-                        <img src="/assets/image/site-pizza.png" class="card-img-top" alt="...">
-                        <div class="d-flex justify-content-center">
-                            {{!-- Lien dynamique vers page ID --}}
-                            <a href="/presentation/{{ _id }}" class="btn btn-dark"
-                                target="_blank">Go somewhere</a>
-                        </div>
-                    </div>
+    {{!--
+    Permet de cherher dans le input mes declarations de variables }}
+    {{#if search }}
+    <!-- SearchBar -->
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text " id="basic-addon1">Recherche:</span>
                 </div>
+                <input id='searchBar' onkeyup="myFunction()" type="text" class="form-control" placeholder="Rechercher"
+                    aria-label="Rechercher" aria-describedby="basic-addon1">
             </div>
         </div>
+    </div>
+    <!-- / SearchBar -->
+    {{/if }}
 
-        {{/each }}
+    <!-- MON PROJECT1 -->
 
+    {{!--
+    Boucle de la card }}
+    <div id="listCard">
+        <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
+
+            {{#each dbPresentation }}
+
+            <div style="max-width: 33%;" class="card filterCard col-md-4 col-12 col-sm-12">
+                <a class="underline-none txt-black" href="/presentation/{{ _id }}">
+                    <img src="/assets/image/site-pizza.png" class="card-img-top" alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ title }}</h5>
+                        <p class="card-text">
+                            {{!--retranscrit le html en text}}
+                            {{{ content }}}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated 3 mins ago</small>
+                    </div>
+                </a>
+            </div>
+
+            {{/each }}
+
+        </div>
     </div>
 </section>
+
+<!-- Script Input searchbar  -->
+<script>
+    function myFunction() {
+        // Declare variables 
+        var input, filter, listCard, filterCard, a, i, txtValue;
+        //input renvoie l'element de document avec son id unique 
+        input = document.getElementById('searchBar');
+        //filter renvoie la valeur de l'input convertie en majuscule
+        filter = input.value.toUpperCase();
+        //listcard renvoie l'element de document avec son id unique 
+        listCard = document.getElementById("listCard");
+        //filtercard renvoie la list et permet de recherche par element 
+        filterCard = listCard.getElementsByClassName('filterCard');
+
+        // retrouve les éléments de la liste et masque ceux qui ne correspondent pas à la requête de recherche
+        //on demenade si i vout rien ou i recupere toute les card ou i increment la liste de card 
+        for (i = 0; i < filterCard.length; i++) {
+            //la variable p filtre i par la 1er lettre indexé
+            p = filterCard[i].getElementsByTagName("a")[0];
+            //la valeur de text represente le contenu du text ou le contenu du text visuel
+            txtValue = (p.textContent || p.innerText)
+//si la valeur du text 
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                filterCard[i].style.display = "";
+            } else {
+                filterCard[i].style.display = "none";
+            }
+        }
+    }
+</script>
+<!-- / Script Input searchbar  -->
