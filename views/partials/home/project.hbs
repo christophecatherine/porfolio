@@ -81,10 +81,12 @@ Page project
             p = filterCard[i].getElementsByTagName("a")[0];
             //la valeur de text represente le contenu du text ou le contenu du text visuel
             txtValue = (p.textContent || p.innerText)
-//si la valeur du text 
+            //si la valeur du text en maj est > a la 1er lettre 
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                //filtre du tableau i renvoie l'element 
                 filterCard[i].style.display = "";
             } else {
+                //sinon il renvoie rien 
                 filterCard[i].style.display = "none";
             }
         }
