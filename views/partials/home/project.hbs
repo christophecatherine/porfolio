@@ -12,7 +12,7 @@ Page project
     </div>
 
     {{!--
-    Permet de cherher dans le input mes declarations de variables }}
+    Permet de cherher dans le input mes declarations de variables --}}
     {{#if search }}
     <!-- SearchBar -->
     <div class="container mt-5">
@@ -31,8 +31,7 @@ Page project
 
     <!-- MON PROJECT1 -->
 
-    {{!--
-    Boucle de la card }}
+   
     <div id="listCard">
         <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
@@ -44,8 +43,9 @@ Page project
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
                         <p class="card-text">
-                            {{!--retranscrit le html en text}}
+                           
                             {{{ content }}}
+                            
                         </p>
                     </div>
                     <div class="card-footer">
@@ -61,32 +61,24 @@ Page project
 </section>
 
 <!-- Script Input searchbar  -->
+
 <script>
     function myFunction() {
-        // Declare variables 
         var input, filter, listCard, filterCard, a, i, txtValue;
-        //input renvoie l'element de document avec son id unique 
         input = document.getElementById('searchBar');
-        //filter renvoie la valeur de l'input convertie en majuscule
         filter = input.value.toUpperCase();
-        //listcard renvoie l'element de document avec son id unique 
         listCard = document.getElementById("listCard");
-        //filtercard renvoie la list et permet de recherche par element 
         filterCard = listCard.getElementsByClassName('filterCard');
 
-        // retrouve les éléments de la liste et masque ceux qui ne correspondent pas à la requête de recherche
-        //on demenade si i vout rien ou i recupere toute les card ou i increment la liste de card 
         for (i = 0; i < filterCard.length; i++) {
-            //la variable p filtre i par la 1er lettre indexé
             p = filterCard[i].getElementsByTagName("a")[0];
-            //la valeur de text represente le contenu du text ou le contenu du text visuel
             txtValue = (p.textContent || p.innerText)
-            //si la valeur du text en maj est > a la 1er lettre 
+
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                //filtre du tableau i renvoie l'element 
+
                 filterCard[i].style.display = "";
             } else {
-                //sinon il renvoie rien 
+
                 filterCard[i].style.display = "none";
             }
         }
