@@ -17,7 +17,7 @@ const UserSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'L\'email est obligatoire'],
-        unique: true,
+        // unique: true,
 
     },
 
@@ -25,6 +25,15 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Le mots de passe est obligatoire']
     },
+
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    isBan: {
+        type: Boolean,
+        default: false
+    }
 
 })
 

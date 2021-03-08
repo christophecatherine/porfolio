@@ -85,6 +85,13 @@ router.route('/contact')
 router.route('/login')
     .get(authController.get)
 
+router.route('/login/register')
+    .post(authController.register)
+
+router.route('/login/auth')
+    .post(authController.auth)
+
+
 
 
 /***********

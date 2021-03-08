@@ -15,22 +15,25 @@ Page Login
     <div class="col-md-12 border border-dark">
 
         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+            {{!--Utilisateur--}}
             <li class="nav-item">
                 <a class="nav-link active border border-dark" id="home-tab" data-toggle="tab" href="#admin" role="tab"
                     aria-controls="home" aria-selected="true">Utilisateur</a>
             </li>
+            {{!--connexion--}}
             <li class="nav-item">
                 <a class="nav-link border border-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
                     aria-controls="profile" aria-selected="false">Connexion</a>
             </li>
+            {{!--Mot de Passe oublié ?--}}
             <li class="nav-item">
                 <a class="nav-link border border-dark" id="profile-tab" data-toggle="tab" href="#lostPassword"
-                    role="tab" aria-controls="profile" aria-selected="false">Passe oublié ?</a>
+                    role="tab" aria-controls="profile" aria-selected="false">Mot de Passe oublié ?</a>
             </li>
         </ul>
 
         <div class="tab-content" id="myTabContent">
-
+            {{!--Créé un compte Utilisateur--}}
             <div class="tab-pane fade show active" id="admin" role="tabpanel" aria-labelledby="home-tab">
                 <div class="register-heading">
                     <h3>Créé un compte Utilisateur</h3>
@@ -48,7 +51,7 @@ Page Login
 
                 </div>
 
-                <form action="/login/register" method="POST" enctype="multipart/form-data">
+                <form action="/login/register" method="POST">
                     <div class="row register-form" style="width: 100%">
 
                         <div class="col-md-6">
@@ -82,10 +85,10 @@ Page Login
                 </form>
 
             </div>
-
+            {{!--Se Connecter--}}
             <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 <h3 class="register-heading">Se Connecter</h3>
-                <form action="/login/loginAuth" method="POST" enctype="multipart/form-data">
+                <form action="/login/auth" method="POST">
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -105,9 +108,10 @@ Page Login
                 </form>
             </div>
 
+            {{!--Mot de passe oublié ?--}}
             <div class="tab-pane fade show" id="lostPassword" role="tabpanel" aria-labelledby="profile-tab">
                 <h3 class="register-heading">Mot de passe oublié ?</h3>
-                <form action="/login/lostPassword" method="POST" enctype="multipart/form-data">
+                <form action="/login/lostPassword" method="POST">
                     <div class="row register-form">
                         <div class="col-md-12">
                             <div class="form-group">

@@ -9,11 +9,11 @@ Collapse Utilisateur Admin
         <div class="card">
             <!--button create-->
             <button type="button" class="btn btn-warning btn-sm" style="background-color: #777; border-color :#000"
-                data-toggle="modal" data-target="#modalCreate">
+                data-toggle="modal" data-target="#modalEditUtilisateur">
                 <i class="fas fa-plus"></i>
             </button>
             <!-- / button create-->
-            
+
             <table class="table">
                 <!-- table presentation -->
                 <!-- head de mon tableau -->
@@ -34,27 +34,26 @@ Collapse Utilisateur Admin
                         <th scope="col">
                             <img style="height: 35px;" src="/assets/image/html.png" alt=" ">
                         </th>
-                        <td> {{ title }} </td>
-                        <td> {{ author }} </td>
-                        <td> {{ content }} </td>
+                        <td> {{ name }} </td>
+                        <td> {{ email }} </td>
+                        <td> {{ isAdmin }} </td>
                         <td>
                             <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                data-target="#modalEdit{{_id}}">
+                                data-target="#modalEditUser{{_id}}">
                                 <i class="far fa-edit"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target="#modalDelete{{_id}}">
+                                data-target="#modalDeleteUser{{_id}}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </td>
                     </tr>
 
-  {{!-- Import partial modal edit presentation --}}
+                    {{!-- Import partial modal edit presentation --}}
                     {{> modals/modalEditUtilisateur }}
 
                     {{!-- Import partial modal delete presentation --}}
                     {{> modals/modalDeleteUtilisateur }}
-
 
                     {{/each }}
 
@@ -63,5 +62,4 @@ Collapse Utilisateur Admin
             </table>
         </div>
     </div>
-    </section>
-   
+</div>

@@ -14,8 +14,7 @@ module.exports = {
     register: (req, res) => {
         //raccoucie pour la session 
         const sess = req.session
-        console;
-        log(req.body)
+        console.log(req.body)
             //compare les 2 MP
         if (req.body.password !== req.body.password) {
             console.log('error password')
