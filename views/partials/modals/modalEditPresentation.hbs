@@ -23,6 +23,7 @@ Modale Edit Présentation
                         {{!-- !!! ne pas oublier le name='content' pour l'arch du body !!! --}}
                         <textarea class="textarea" id='contentEditPresentation{{ _id }}' name='content'
                             placeholder="Textarea"> {{ content }} </textarea>
+                            {{!--script id CKEDITOR--}}
                         <script>
                             const ed{{ _id }} = CKEDITOR.replace(`contentEditPresentation{{_id}}`, {
                                 entities_latin: false,

@@ -25,14 +25,16 @@ module.exports = {
     create: async(req, res) => {
         console.log('Controller create commentaire')
 
+//Declaration const presentation qui attend la reponse id
         const presentation = await Presentation.findById(req.params.id)
 
+//Declaration const new comment avec schema en recuperant idpresentation
         const comment = new Commentaire({
             author: req.body.author,
             content: req.body.content,
             refID: presentation._id
         })
-
+//push de idcomment de la presentation
         presentation.comment.push(comment._id)
 
         comment.save((err) => {
