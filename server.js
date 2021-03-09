@@ -8,10 +8,13 @@ const
     express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
+    MongoStore = require('connect-mongo'),
+    expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000,
     methodeOverride = require("method-override");
+
 
 require('dotenv').config()
 
@@ -29,15 +32,57 @@ mongoose
     .catch(err => console.log(error))
 
 
+const mongoStore = MongoStore(expressSession)
+
 //Method-override
 app.use(methodeOverride("_method"));
+
+// Express-session
+app.use(expressSession({
+    secret: 'securite',
+    name: 'cookie-sess',
+    saveUninitialized: true,
+    resave: false,
+    store: new mongoStore({
+        mongooseConnection: mongoose.connection
+    })
+}));
+
+// Déclaration de middleWare (session)
+app.use('*', (req, res, next) => {
+    // Déclaration et utilisation de notre session
+    // en corélation avec notre base de donnée
+    res.locals.user = req.session.userId;
+    // Déclaration de notre condition middleware status
+    if (req.session.status === 'user') {
+        // Utilisation de notre middleware
+        res.locals.user = req.session.status
+    }
+
+    // Déclaration de notre condition middleware status
+    else if (req.session.status === 'admin') {
+        // Utilisation de notre middleware
+        res.locals.admin = req.session.status
+    }
+    // La function next permet qu'une fois la condition effectuer il reprenne son chemin
+    next()
+})
+
+
+//Register Helper 
+const {
+    limitArray
+} = require("./helper/hbs.js");
 
 // Handlebars
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
     defaultLayout: 'main',
-    adminLayout: 'admin'
+    adminLayout: 'admin',
+    helpers: {
+        limit: limitArray,
+    }
 }));
 
 // Express static permet de diriger un URL sur un dossier en particulier
@@ -63,7 +108,3 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
-
-
-// save session avec MongoDB
-//const mongoStore = MongoStore(expressSession)

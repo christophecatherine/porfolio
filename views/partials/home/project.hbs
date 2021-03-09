@@ -35,7 +35,7 @@ Page project
     <div id="listCard">
         <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
-            {{#each dbPresentation }}
+            {{#each ( limit dbPresentation 3 ) }}
 
             <div style="max-width: 33%;" class="card filterCard col-md-4 col-12 col-sm-12">
                 <a class="underline-none txt-black" href="/presentation/{{ _id }}">

@@ -52,12 +52,15 @@ module.exports = {
             email: req.body.email
         })
 
+        console.log('hghjugfjufyv', userAuth);
+
         // si utilisateur n'existe pas dans la db ... //
         if (!userAuth) {
             res.render('login', {
                 error: "Ce compte n'existe pas",
             })
         } else {
+
             User
             // Regarde de nouveau si l'adresse mail existe après la création du compte //
                 .findOne({

@@ -25,25 +25,27 @@ module.exports = {
     create: async(req, res) => {
         console.log('Controller create commentaire')
 
-//Declaration const presentation qui attend la reponse id
+        //Declaration const presentation qui attend la reponse id
         const presentation = await Presentation.findById(req.params.id)
 
-//Declaration const new comment avec schema en recuperant idpresentation
+        //Declaration const new comment avec schema en recuperant idpresentation
         const comment = new Commentaire({
-            author: req.body.author,
-            content: req.body.content,
-            refID: presentation._id
-        })
-//push de idcomment de la presentation
+                author: req.body.author,
+                content: req.body.content,
+                refID: presentation._id
+            })
+            //push de idcomment de la presentation
         presentation.comment.push(comment._id)
 
+        //faire une sauvegarde du new commentaire 
         comment.save((err) => {
-            if (err) return handleError(err)
-        })
+                if (err) return handleError(err)
+            })
+            //faire une sauvegarde de la presentation
         presentation.save((err) => {
-            if (err) return handleError(err)
-        })
-
+                if (err) return handleError(err)
+            })
+            // on redirige sur la page presentation en chaire de cararactere ($)
         res.redirect(`/presentation/${presentation._id}`)
 
     },
@@ -63,6 +65,7 @@ module.exports = {
                     // res.json({
                     //     succes: req.params.id + ' // à bien été supprimer'
                     // })
+                    // on redirige sur la page presentation en chaire de cararactere (+ req.params.id))
                 res.redirect('/presentation/' + req.params.id)
             })
     },

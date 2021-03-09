@@ -53,7 +53,7 @@ module.exports = {
         Presentation
         // On lui demande la function create
             .create({
-            // On definit nos data pour la création de notre nouvelle compétences
+            // On definit nos data pour la création de notre nouvelle presentation
             title: b.title,
             content: b.content
 
@@ -62,7 +62,7 @@ module.exports = {
         }, (err, data) => {
             // En cas d'err il nous log l'err
             if (err) console.log(err);
-            // Compétence cree (avec le _id)
+            // presentation cree (avec le _id)
             console.log(data)
 
             // On redirige sur le controller admin (ou seront charger nos data)
