@@ -3,7 +3,7 @@
  *************/
 // Import module
 const bcrypt = require('bcrypt')
-    // const dateformat = require('datformat')
+// const dateformat = require('datformat')
 const User = require('../DB/models/User')
 
 // Import de model
@@ -46,7 +46,7 @@ module.exports = {
         }
     },
     //Authentification
-    auth: async(req, res) => {
+    auth: async (req, res) => {
         // userAuth sera le résultat de notre recherche 'email: req.body.email' via le constructeur User
         let userAuth = await User.findOne({
             email: req.body.email
@@ -60,54 +60,55 @@ module.exports = {
         } else {
 
             User
-            // Regarde de nouveau si l'adresse mail existe après la création du compte //
+                // Regarde de nouveau si l'adresse mail existe après la création du compte //
                 .findOne({
-                email: req.body.email
-            }, (err, User) => {
-                if (err) console.log(err)
-                if (!User) {
-                    // si erreur dans le MdP, renvoi vers la page login //
-                    res.render('login', {
-                        error: "Votre authentification n'est pas reconue !"
-                    })
+                    email: req.body.email
+                }, (err, User) => {
+                    if (err) console.log(err)
+                    if (!User) {
+                        // si erreur dans le MdP, renvoi vers la page login //
+                        res.render('login', {
+                            error: "Votre authentification n'est pas reconue !"
+                        })
 
-                } else {
+                    } else {
 
-                    // Bcrypt va comparer l'adresse mail enregistrée dans la DB et celle saisie par l'user afin de voir si un mdp est rataché a celle ci // 
-                    bcrypt.compare(req.body.password, User.password, (error, same) => {
+                        // Bcrypt va comparer l'adresse mail enregistrée dans la DB et celle saisie par l'user afin de voir si un mdp est rataché a celle ci // 
+                        bcrypt.compare(req.body.password, User.password, (error, same) => {
 
-                        // si non-correspondance des données, alors renvoi de message erreur et renvoi sur la page login //
-                        if (!same) {
-                            res.render('login', {
-                                error: "une erreur est survenue !"
-                            })
-                        } else {
+                            // si non-correspondance des données, alors renvoi de message erreur et renvoi sur la page login //
+                            if (!same) {
+                                res.render('login', {
+                                    error: "une erreur est survenue !"
+                                })
+                            } else {
+                                //notre requete session userId vaut user._id
+                                req.session.userId = User._id
+                                // si useradmin est strictement vrai la requete de is admin vaut useradmain 
+                                if (User.isAdmin === true) {
+                                    req.session.isAdmin = User.isAdmin
+                                }
+                                //notre requete session user vaut nos objets 
+                                req.session.user = {
+                                    name: User.name,
+                                    email: User.email,
+                                    isAdmin: User.isAdmin,
+                                    isBan: User.isBan
+                                }
 
-                            req.session.userId = User._id
+                                // Quand on est connecté, ça nous renvoie le message "vous êtes connecté en tant que" suivi du prénom de l'utilisateur + renvoi sur la page home //
+                                // res.render('home', {
+                                //     success: "vous etes connecté au nom de: " + User.firstname
+                                // })
 
-                            if (User.isAdmin === true) {
-                                req.session.isAdmin = User.isAdmin
+                                res.redirect('/')
                             }
-
-                            req.session.user = {
-                                name: User.name,
-                                email: User.email,
-                                isAdmin: User.isAdmin,
-                                isBan: User.isBan
-                            }
-
-                            // Quand on est connecté, ça nous renvoie le message "vous êtes connecté en tant que" suivi du prénom de l'utilisateur + renvoi sur la page home //
-                            // res.render('home', {
-                            //     success: "vous etes connecté au nom de: " + User.firstname
-                            // })
-
-                            res.redirect('/')
-                        }
-                    })
-                }
-            })
+                        })
+                    }
+                })
         }
     },
+    //la fonction de notre deconnection vaut l'annulation de la session et on supp le cookie et on redirige ('/')
     logout: (req, res) => {
         req.session.destroy(() => {
             res.clearCookie('cookie-sess')

@@ -1,6 +1,8 @@
+//import de module 
+
 module.exports = {
     // On définit notre fonction
-    limitArray: function(arr, limit) {
+    limitArray: function (arr, limit) {
         if (!Array.isArray(arr)) {
             return [];
         }
