@@ -2,6 +2,17 @@
     Page Home
     /home
 --}}
+<p>Welcome <u>{{ user.name }}</u></p>
+
+{{#if admin }}
+
+Je suis un admin
+
+{{else}}
+
+Je ne suis pas un admin
+
+{{/if }}
 
 {{> home/header }}
 {{> home/competence }}

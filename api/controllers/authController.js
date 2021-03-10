@@ -52,8 +52,6 @@ module.exports = {
             email: req.body.email
         })
 
-        console.log('hghjugfjufyv', userAuth);
-
         // si utilisateur n'existe pas dans la db ... //
         if (!userAuth) {
             res.render('login', {
@@ -65,9 +63,9 @@ module.exports = {
             // Regarde de nouveau si l'adresse mail existe après la création du compte //
                 .findOne({
                 email: req.body.email
-            }, (err, data) => {
+            }, (err, User) => {
                 if (err) console.log(err)
-                if (!data) {
+                if (!User) {
                     // si erreur dans le MdP, renvoi vers la page login //
                     res.render('login', {
                         error: "Votre authentification n'est pas reconue !"
@@ -76,7 +74,7 @@ module.exports = {
                 } else {
 
                     // Bcrypt va comparer l'adresse mail enregistrée dans la DB et celle saisie par l'user afin de voir si un mdp est rataché a celle ci // 
-                    bcrypt.compare(req.body.password, data.password, (error, same) => {
+                    bcrypt.compare(req.body.password, User.password, (error, same) => {
 
                         // si non-correspondance des données, alors renvoi de message erreur et renvoi sur la page login //
                         if (!same) {
@@ -84,14 +82,38 @@ module.exports = {
                                 error: "une erreur est survenue !"
                             })
                         } else {
+
+                            req.session.userId = User._id
+
+                            if (User.isAdmin === true) {
+                                req.session.isAdmin = User.isAdmin
+                            }
+
+                            req.session.user = {
+                                name: User.name,
+                                email: User.email,
+                                isAdmin: User.isAdmin,
+                                isBan: User.isBan
+                            }
+
                             // Quand on est connecté, ça nous renvoie le message "vous êtes connecté en tant que" suivi du prénom de l'utilisateur + renvoi sur la page home //
-                            res.render('home', {
-                                success: "vous etes connecté au nom de: " + data.firstname
-                            })
+                            // res.render('home', {
+                            //     success: "vous etes connecté au nom de: " + User.firstname
+                            // })
+
+                            res.redirect('/')
                         }
                     })
                 }
             })
         }
+    },
+    logout: (req, res) => {
+        req.session.destroy(() => {
+            res.clearCookie('cookie-sess')
+            console.log(req.session)
+            res.redirect('/')
+        })
     }
+
 }

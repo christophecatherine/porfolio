@@ -8,7 +8,7 @@ const
     express = require('express'),
     app = express(),
     mongoose = require('mongoose'),
-    MongoStore = require('connect-mongo'),
+    MongoStore = require('connect-mongo').default,
     expressSession = require('express-session'),
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
@@ -32,42 +32,21 @@ mongoose
     .catch(err => console.log(error))
 
 
-const mongoStore = MongoStore(expressSession)
+
 
 //Method-override
 app.use(methodeOverride("_method"));
 
-// Express-session
+// Express-session (cookie)
 app.use(expressSession({
     secret: 'securite',
     name: 'cookie-sess',
     saveUninitialized: true,
     resave: false,
-    store: new mongoStore({
-        mongooseConnection: mongoose.connection
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI
     })
 }));
-
-// Déclaration de middleWare (session)
-app.use('*', (req, res, next) => {
-    // Déclaration et utilisation de notre session
-    // en corélation avec notre base de donnée
-    res.locals.user = req.session.userId;
-    // Déclaration de notre condition middleware status
-    if (req.session.status === 'user') {
-        // Utilisation de notre middleware
-        res.locals.user = req.session.status
-    }
-
-    // Déclaration de notre condition middleware status
-    else if (req.session.status === 'admin') {
-        // Utilisation de notre middleware
-        res.locals.admin = req.session.status
-    }
-    // La function next permet qu'une fois la condition effectuer il reprenne son chemin
-    next()
-})
-
 
 //Register Helper 
 const {
@@ -94,6 +73,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
+// Déclaration de middleWare (session)
+app.use('*', (req, res, next) => {
+
+    // Déclaration et utilisation de notre session
+    // en corélation avec notre base de donnée
+    res.locals.userId = req.session.userId;
+    res.locals.user = req.session.user
+    if (req.session.isAdmin) res.locals.admin = req.session.isAdmin
+
+    // console.log(req.session)
+    // La function next permet qu'une fois la condition effectuer il reprenne son chemin
+    next()
+})
 
 // Notre router permettra de diriger des chemins 'URL' sur les actions 'Controller' qui distriburont nos pages, ... 
 // CRUD = GET / POST / PUT / DELETE

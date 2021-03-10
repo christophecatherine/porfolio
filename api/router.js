@@ -5,6 +5,10 @@ const express = require('express'),
     router = express.Router(),
     path = require('path')
 
+/*
+ * Middleware
+ *************/
+const auth = require('./middleware/auth')
 
 /*
  * Controller
@@ -29,7 +33,7 @@ router.route('/')
 
 // Admin
 router.route('/admin')
-    .get(adminController.get)
+    .get(auth.admin, adminController.get)
 
 // Competences 
 router.route('/competences')
@@ -43,7 +47,6 @@ router.route('/competences/:id')
 
 //Message
 router.route('/message')
-    .get(messageController.get)
     .post(messageController.create)
 
 router.route('/messageId/:id')
@@ -84,6 +87,9 @@ router.route('/contact')
 // Login
 router.route('/login')
     .get(authController.get)
+
+router.route('/logout')
+    .get(authController.logout)
 
 router.route('/login/register')
     .post(authController.register)
