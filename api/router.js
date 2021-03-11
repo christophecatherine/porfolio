@@ -21,7 +21,9 @@ const homeController = require('./controllers/homeController'),
     messageController = require('./controllers/messageController'),
     userController = require('./controllers/userController'),
     commentaireController = require('./controllers/commentaireController'),
-    authController = require('./controllers/authController');
+    authController = require('./controllers/authController'),
+    nodemailerController = require('./controllers/nodemailerController');
+
 /*
 
  * Router
@@ -104,6 +106,16 @@ router.route('/login/auth')
     .post(authController.auth)
 
 
+// Nodemailer
+// email test
+router.route('/nodemailerTest')
+    .post(nodemailerController.test)
+// email de verification
+router.route('/verification')
+    .post(nodemailerController.sendVerif)
+// Page de vérification
+router.route('/verify/:id')
+    .get(nodemailerController.verifMail)
 
 
 /***********

@@ -1,0 +1,45 @@
+{{!-- Html --}}
+<div>
+    {{!-- Flash --}}
+    <div id='flash'></div>
+
+    <h2>Envoyez-vous un mail:</h2>
+
+    {{!-- Form Test Nodemailer --}}
+    <form action="/nodemailerTest" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="author" placeholder="Name" required>
+        <button type="submit">test Nodemailer</button>
+    </form>
+
+    <h2>Demander un mail de Vérification</h2>
+
+    {{!-- Form de vérification --}}
+    <form action="/verification" method="POST">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="author" placeholder="Name" required>
+        <button type="submit"> Send Verification Nodemailer </button>
+    </form>
+
+</div>
+
+{{!-- Script --}}
+{{#if success }}
+<script>
+    document.getElementById('flash').innerText = `{{ success }}`
+    document.getElementById('flash').style.color = 'green'
+    setTimeout(() => {
+        document.getElementById('flash').style.display = 'none'
+    }, 3500)
+</script>
+{{/if }}
+
+{{!-- CSS --}}
+<style>
+    #flash {
+        font-size: 25px;
+        padding: 7px;
+        margin: 3px;
+        text-align: center;
+    }
+</style>
