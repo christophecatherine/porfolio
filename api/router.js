@@ -52,9 +52,15 @@ router.route('/message')
 router.route('/messageId/:id')
     .delete(messageController.deleteOne)
 
-//User
+//Auth
 router.route('/register')
-    .post(userController.register)
+    .post(authController.register)
+
+//User
+router.route('/user/:id')
+    .put(userController.editOne)
+    .delete(userController.deleteOne)
+
 
 //Commentaire
 router.route('/commentaire')

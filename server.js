@@ -43,6 +43,7 @@ app.use(expressSession({
     name: 'cookie-sess',
     saveUninitialized: true,
     resave: false,
+    //permet de stocker notre session dans la db
     store: MongoStore.create({
         mongoUrl: process.env.MONGO_URI
     })
