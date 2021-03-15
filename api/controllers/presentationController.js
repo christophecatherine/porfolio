@@ -8,7 +8,6 @@ const Presentation = require('../DB/models/Presentation')
 
 module.exports = {
 
-
     //Method get
     get: (req, res) => {
         // res.render('presentation')
@@ -28,7 +27,7 @@ module.exports = {
 
     // Method GetId
     getId: (req, res) => {
-        console.log('PageID: ', req.params.id)
+        // console.log('PageID: ', req.params.id)
         Presentation
             .findById(req.params.id)
             .populate('comment')
@@ -36,7 +35,7 @@ module.exports = {
             .exec((err, data) => {
                 if (err) console.log(err);
                 // res.json(data)
-                console.log(data)
+                // console.log(data)
                 res.render('presentationID', {
                     presentationID: data
                 })
@@ -45,8 +44,8 @@ module.exports = {
 
     //Method create(post)
     create: (req, res) => {
-        console.log('Controller create presentation')
-        console.log(req.body)
+        // console.log('Controller create presentation')
+        // console.log(req.body)
         const b = req.body
 
         // On appel notre model (constructeur)
@@ -74,8 +73,8 @@ module.exports = {
     // Method put 
     editOne: (req, res) => {
         const b = req.body
-        console.log('EDITONE PRESENTATION BODY', b)
-        console.log('EDITONE PRESENTATION PARAMS: ', req.params.id)
+            // console.log('EDITONE PRESENTATION BODY', b)
+            // console.log('EDITONE PRESENTATION PARAMS: ', req.params.id)
 
         Presentation
             .findByIdAndUpdate(req.params.id, {

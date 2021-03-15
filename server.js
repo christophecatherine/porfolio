@@ -102,3 +102,5 @@ app.use('/', ROUTER)
 app.listen(port, () => {
     console.log("le serveur tourne sur le prt: " + port);
 });
+
+module.exports = app
