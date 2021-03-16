@@ -3,7 +3,8 @@
  ****************/
 const express = require('express'),
     router = express.Router(),
-    path = require('path')
+    path = require('path'),
+    upload = require('./config/multer');
 
 /*
  * Middleware
@@ -77,12 +78,12 @@ router.route('/commentaire/:id')
 
 // Presentations
 router.route('/presentation')
-    .post(presentationController.create)
+    .post(upload.single('imagePresentation'), presentationController.create)
 
 router.route('/presentation/:id')
     .get(presentationController.getId)
     .delete(presentationController.deleteOne)
-    .put(presentationController.editOne)
+    .put(upload.single('imagePresentation'), presentationController.editOne)
 
 // Project
 router.route('/project')
@@ -110,10 +111,10 @@ router.route('/login/auth')
 // email test
 router.route('/nodemailerTest')
     .post(nodemailerController.test)
-// email de verification
+    // email de verification
 router.route('/verification')
     .post(nodemailerController.sendVerif)
-// Page de vérification
+    // Page de vérification
 router.route('/verify/:id')
     .get(nodemailerController.verifMail)
 

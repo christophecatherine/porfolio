@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="/presentation">
+                <form method="post" action="/presentation" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Titre:</label>
                         <input type="text" class="form-control" name='title' id="recipient-name">
@@ -27,6 +27,8 @@
                                 uiColor: '#ff5cde'
                             })
                         </script>
+                        {{!-- Image traiter avec multer --}}
+                        <input type="file" name="imagePresentation">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

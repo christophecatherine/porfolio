@@ -22,6 +22,8 @@ const PresentationSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    imgPresentation: String,
+    imgName: String,
     createDate: {
         type: Date,
         default: new Date()

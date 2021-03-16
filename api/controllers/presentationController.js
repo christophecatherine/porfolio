@@ -4,7 +4,9 @@
 // Import module
 // const dateformat = require('dataformat')
 // Import de model
-const Presentation = require('../DB/models/Presentation')
+const Presentation = require('../DB/models/Presentation'),
+    path = require('path'),
+    fs = require('fs')
 
 module.exports = {
 
@@ -48,21 +50,26 @@ module.exports = {
         // console.log(req.body)
         const b = req.body
 
+        // console.log(req.file)
+
         // On appel notre model (constructeur)
         Presentation
         // On lui demande la function create
             .create({
             // On definit nos data pour la création de notre nouvelle presentation
             title: b.title,
-            content: b.content
-
+            content: b.content,
+            // Ici on viens formater le chemin de notre image qui sera stocker dans notre DB
+            imgPresentation: `/assets/image/${req.file.originalname}`,
+            // On stock aussi le nom de l'image
+            imgName: req.file.originalname
 
             // Notre callback de validation de la function create
         }, (err, data) => {
             // En cas d'err il nous log l'err
             if (err) console.log(err);
             // presentation cree (avec le _id)
-            console.log(data)
+            // console.log(data)
 
             // On redirige sur le controller admin (ou seront charger nos data)
             res.redirect('/admin')
@@ -71,39 +78,80 @@ module.exports = {
     },
 
     // Method put 
-    editOne: (req, res) => {
+    editOne: async(req, res) => {
         const b = req.body
+            // On declare notre articleID (Objet à éditer)
+        const presentationID = await Presentation.findById(req.params.id),
+            // Query qui est l'id de notre objet à éditer
+            query = {
+                _id: req.params.id
+            },
+            // pathImg sera le chemin de notre fichier à supprimer
+            pathImg = path.resolve("public/image/" + presentationID.imgName)
             // console.log('EDITONE PRESENTATION BODY', b)
             // console.log('EDITONE PRESENTATION PARAMS: ', req.params.id)
 
-        Presentation
-            .findByIdAndUpdate(req.params.id, {
-                ...req.body
-            }, (err, data) => {
-                if (err) console.log(err)
-                    // res.json(data)
-                res.redirect('/admin')
-            })
+        console.log(req.body)
+        console.log(req.file)
+
+        if (!req.file) {
+            if (req.body.title) {
+                Presentation
+                    .findByIdAndUpdate(req.params.id, {
+                        ...req.body
+                    }, (err, data) => {
+                        if (err) console.log(err)
+                            // res.json(data)
+                        res.redirect('/admin')
+                    })
+            }
+        } else {
+            Presentation
+                .findByIdAndUpdate(req.params.id, {
+                    ...req.body,
+                    // Ici on viens formater le chemin de notre image qui sera stocker dans notre DB
+                    imgPresentation: `/assets/image/${req.file.originalname}`,
+                    // On stock aussi le nom de l'image
+                    imgName: req.file.originalname
+                }, (err, data) => {
+                    if (err) console.log(err)
+                        // res.json(data)
+                    fs.unlink(pathImg, (err) => {
+                        if (err) console.log(err)
+                            // res.json({
+                            // succes: req.params.id + '// à bien été supprimer'
+                            // })
+                        res.redirect('/admin')
+                    })
+                })
+        }
+
+
     },
 
     // Method delete one 
-    deleteOne: (req, res) => {
-        // consolog.log("Delete Presentation: ", req.params.id)
+    deleteOne: async(req, res) => {
+        const dbPresentation = await Presentation.findById(req.params.id),
+            // Ici on déclare le chemin de l'image qui devra etre supprimer
+            pathImg = path.resolve("public/image/" + dbPresentation.imgName);
+
         Presentation
             .deleteOne({
-
                 // On va venir chercher parmis tout les _id celui égale à notre req.params (id recupéré dans l'URL)
-                _id: req.params.id
-
+                _id: req.params.id,
             }, (err) => {
                 // Si nous avons pas d'erreur alors on redirige
                 if (err) console.log(err)
                     // Sinon on renvoit l'err
-
-                // res.json({
-                // succes: req.params.id + '// à bien été supprimer'
-                // })
-                res.redirect('/admin')
+                else {
+                    fs.unlink(pathImg, (err) => {
+                        if (err) console.log(err)
+                            // res.json({
+                            // succes: req.params.id + '// à bien été supprimer'
+                            // })
+                        res.redirect('/admin')
+                    })
+                }
             })
-    },
+    }
 }
