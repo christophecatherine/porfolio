@@ -109,14 +109,8 @@ router.route('/login/auth')
 
 // Nodemailer
 // email test
-router.route('/nodemailerTest')
+router.route('/nodemailer')
     .post(nodemailerController.test)
-    // email de verification
-router.route('/verification')
-    .post(nodemailerController.sendVerif)
-    // Page de vérification
-router.route('/verify/:id')
-    .get(nodemailerController.verifMail)
 
 
 /***********
