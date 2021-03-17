@@ -112,6 +112,9 @@ router.route('/login/auth')
 router.route('/nodemailer')
     .post(nodemailerController.test)
 
+router.route('/lostPassword')
+    .post(nodemailerController.lostPassword)
+
 
 /***********
  * / Router

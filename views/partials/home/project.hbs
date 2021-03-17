@@ -27,11 +27,33 @@ Page project
         </div>
     </div>
     <!-- / SearchBar -->
-    {{/if }}
+    <div id="listCard">
+        <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
-    <!-- MON PROJECT1 -->
+            {{#each dbPresentation }}
 
-   
+            <div class="card filterCard col-md-4 col-12 col-sm-12">
+                <a class="underline-none txt-black" href="/presentation/{{ _id }}">
+                    <img src="{{ imgPresentation }}" class="card-img-top" style='height: 150px' alt="..." />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ title }}</h5>
+                        <p class="card-text">
+                            {{{ content }}}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">{{moment createDate lang="fr" format="dddd, DD MMMM YYYy"}}</small>
+                    </div>
+                </a>
+            </div>
+
+            {{/each }}
+
+        </div>
+    </div>
+
+    {{else }}
+
     <div id="listCard">
         <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
@@ -43,13 +65,11 @@ Page project
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
                         <p class="card-text">
-                           
-                            {{{ content }}}
-                            
+                            {{{ content }}} 
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 3 mins ago</small>
+                        <small class="text-muted">{{moment createDate lang="fr" format="dddd, DD MMMM YYYy"}}</small>
                     </div>
                 </a>
             </div>
@@ -58,6 +78,13 @@ Page project
 
         </div>
     </div>
+
+    {{/if }}
+
+    <!-- MON PROJECT1 -->
+
+   
+    
 </section>
 
 <!-- Script Input searchbar  -->

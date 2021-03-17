@@ -12,9 +12,11 @@ module.exports = {
 
     //Method get
     get: (req, res) => {
-        // res.render('presentation')
 
+
+        // res.render('presentation')
         Presentation
+
             .find()
             .lean()
             .exec((err, data) => {
@@ -37,7 +39,7 @@ module.exports = {
             .exec((err, data) => {
                 if (err) console.log(err);
                 // res.json(data)
-                // console.log(data)
+                console.log(data)
                 res.render('presentationID', {
                     presentationID: data
                 })
@@ -56,13 +58,14 @@ module.exports = {
         Presentation
         // On lui demande la function create
             .create({
+            ...req.body,
             // On definit nos data pour la création de notre nouvelle presentation
-            title: b.title,
-            content: b.content,
+            // title: b.title, // replace by ...req.body
+            // content: b.content, // replace by ...req.body
             // Ici on viens formater le chemin de notre image qui sera stocker dans notre DB
-            imgPresentation: `/assets/image/${req.file.originalname}`,
+            imgPresentation: `/assets/image/${req.file.completed}`,
             // On stock aussi le nom de l'image
-            imgName: req.file.originalname
+            imgName: req.file.completed
 
             // Notre callback de validation de la function create
         }, (err, data) => {
@@ -110,9 +113,9 @@ module.exports = {
                 .findByIdAndUpdate(req.params.id, {
                     ...req.body,
                     // Ici on viens formater le chemin de notre image qui sera stocker dans notre DB
-                    imgPresentation: `/assets/image/${req.file.originalname}`,
+                    imgPresentation: `/assets/image/${req.file.completed}`,
                     // On stock aussi le nom de l'image
-                    imgName: req.file.originalname
+                    imgName: req.file.completed
                 }, (err, data) => {
                     if (err) console.log(err)
                         // res.json(data)

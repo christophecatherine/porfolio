@@ -10,8 +10,11 @@ const storage = multer.diskStorage({
     // Ici est définit le format du nom de l'image à stocker
     filename: (req, file, cb) => {
         const ext = file.originalname,
-            date = Date.now()
-        cb(null, ext)
+            date = Date.now(),
+            completed = date + '_' + ext;
+
+        file.completed = completed
+        cb(null, completed)
     }
 })
 

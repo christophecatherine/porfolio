@@ -10,6 +10,7 @@ const PresentationSchema = new mongoose.Schema({
 
     title: String,
     content: String,
+    description: String,
     comment: [{
         type: Schema.Types.ObjectId,
         ref: 'Commentaire'

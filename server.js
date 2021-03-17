@@ -13,7 +13,8 @@ const
     hbs = require('express-handlebars'),
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000,
-    methodeOverride = require("method-override");
+    methodeOverride = require("method-override"),
+    sharp = require('sharp');
 
 
 require('dotenv').config()
@@ -31,7 +32,9 @@ mongoose
     .then(DB => console.log('connecter à la base de donnée'))
     .catch(err => console.log(error))
 
-
+// Express Static (Permet de pointer un dossier static sur une URL)
+// Exemple: le chemin /assets nous donnera accès au dossier public
+app.use(express.static('public'));
 
 
 //Method-override
@@ -53,6 +56,11 @@ app.use(expressSession({
 const {
     limitArray
 } = require("./helper/hbs.js");
+
+// Moment (Handlebars)
+var Handlebars = require("handlebars");
+var MomentHandler = require("handlebars.moment");
+MomentHandler.registerHelpers(Handlebars);
 
 // Handlebars
 app.set('view engine', 'hbs');

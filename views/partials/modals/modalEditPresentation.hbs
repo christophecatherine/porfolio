@@ -29,7 +29,7 @@ Modale Edit Présentation
                                 entities_latin: false,
                                 uiColor: '#ff5cde'
                             })
-                            ed{ { _id } }.on('change', function (e) {//modification du contenu de l'éditeur
+                            ed{{ _id }}.on('change', function (e) {//modification du contenu de l'éditeur
                                 console.log(e.editor.getData())
                             })
                         </script>

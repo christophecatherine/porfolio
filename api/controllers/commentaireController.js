@@ -25,6 +25,8 @@ module.exports = {
     create: async(req, res) => {
         console.log('Controller create commentaire')
 
+        console.log(req.body)
+
         //Declaration const presentation qui attend la reponse id
         const presentation = await Presentation.findById(req.params.id)
 
