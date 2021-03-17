@@ -7,10 +7,7 @@
 const User = require('../DB/models/User')
 const bcrypt = require('bcrypt')
 
-
 module.exports = {
-
-
     // Method put 
     editOne: (req, res) => {
         let boolAdmin = false
@@ -20,9 +17,7 @@ module.exports = {
         if (req.body.isAdmin === 'on') boolAdmin = true;
         if (req.body.isBan === 'on') boolBan = true;
         if (req.body.isVerified === 'on') boolVerified = true;
-
-        console.log(req.body);
-
+        // console.log(req.body);
         User
             .findByIdAndUpdate(req.params.id, {
                 isAdmin: boolAdmin,

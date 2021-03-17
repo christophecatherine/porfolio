@@ -6,9 +6,7 @@ Partials: Liste Commentaire
     <div class='row'>
         <ul class="list-unstyled">
             {{!-- Liste commentaire --}}
-
             {{#each presentationID.comment }}
-
             <li class="media">
                 <img src="/assets/image/sass.png" class="mr-3" alt="...">
                 <div class="media-body row">
@@ -25,9 +23,7 @@ Partials: Liste Commentaire
                 </div>
             </li>
             {{!--Import modalDeleteComment--}}
-
             {{> modals/modalDeleteComment }}
-
             {{/each }}
 
         </ul>
