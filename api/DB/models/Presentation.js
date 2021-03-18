@@ -2,7 +2,8 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Commentaire = require('./Commentaire')
+const Commentaire = require('./Commentaire');
+// const Competences = require('./Competences');
 
 //Creer un nouvel Presentation dans schema 
 const PresentationSchema = new mongoose.Schema({
@@ -13,6 +14,14 @@ const PresentationSchema = new mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'Commentaire'
     }],
+    // competence: [{
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Competences'
+    // }],
+    isVerified: {
+        type: Boolean,
+        default: false
+    },
     createDate: {
         type: Date,
         default: new Date()
