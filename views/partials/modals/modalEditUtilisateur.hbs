@@ -19,11 +19,11 @@ Modale Edit Utilisateur
                 <p>email: {{ email }} </p>
                 <form action="/user/{{ _id }}/?_method=PUT" method="post">
                     <label for="">Admin</label>
-                    <input type="checkbox" id='isAdmin' name='isAdmin'>
+                    <input type="checkbox" id='isAdmin{{_id}}' name='isAdmin'>
                     <label for="">Verified</label>
-                    <input type="checkbox" id='isVerified' name='isVerified'>
+                    <input type="checkbox" id='isVerified{{_id}}' name='isVerified'>
                     <label for="">Ban</label>
-                    <input type="checkbox" id='isBan' name='isBan'>
+                    <input type="checkbox" id='isBan{{_id}}' name='isBan'>
                     <button type="submit">Editer {{ name }} </button>
                 </form>
             </div>
@@ -36,18 +36,21 @@ Modale Edit Utilisateur
 </div>
 
 <script>
+    
     // Verif checked Admin
-    const isAdmin = {{ isAdmin }}
-    const checkedAdmin = document.getElementById('isAdmin')
-    checkedAdmin.checked = isAdmin
+    const isAdmin{{_id}} = {{ isAdmin }}
+    const checkedAdmin{{_id}} = document.getElementById('isAdmin{{_id}}')
+    checkedAdmin{{_id}}.checked = isAdmin{{_id}}
+
     // Verif checked Ban
-    const isVerified = {{ isVerified }}
-    const checkedVerified = document.getElementById('isVerified')
-    checkedVerified.checked = isVerified
+    const isVerified{{_id}} = {{ isVerified }}
+    const checkedVerified{{_id}} = document.getElementById('isVerified{{_id}}')
+    checkedVerified{{_id}}.checked = isVerified{{_id}}
+
     // Verif checked Verified
-    const isBan = {{ isBan }}
-    const checkedBan = document.getElementById('isBan')
-    checkedBan.checked = isBan
+    const isBan{{_id}} = {{ isBan }}
+    const checkedBan{{_id}} = document.getElementById('isBan{{_id}}')
+    checkedBan{{_id}}.checked = isBan{{_id}}
 
 </script>
 

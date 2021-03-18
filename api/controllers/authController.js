@@ -115,13 +115,40 @@ module.exports = {
             })
         }
     },
+    editPassword: async(req, res) => {
+        console.log(req.body)
+        const user = await User.find({
+            email: req.body.email
+        })
+
+        if (!user) {
+            console.log('L utilisateur n exite pas')
+            res.redirect('/')
+        } else {
+            // Mettre controller pour editer l'user
+            bcrypt.hash(req.body.password, 10, (error, encrypted) => {
+                User.findOneAndUpdate({
+                    email: req.body.email
+                }, {
+                    password: encrypted
+                }, (err) => {
+                    if (err) console.log(err)
+
+                    console.log(req.body)
+                    res.redirect('/')
+                })
+            })
+        }
+    },
+
     //la fonction de notre deconnection vaut l'annulation de la session et on supp le cookie et on redirige ('/')
     logout: (req, res) => {
+
         req.session.destroy(() => {
             res.clearCookie('cookie-sess')
             console.log(req.session)
             res.redirect('/')
         })
-    }
+    },
 
 }

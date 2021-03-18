@@ -112,9 +112,17 @@ router.route('/login/auth')
 router.route('/nodemailer')
     .post(nodemailerController.test)
 
+// Mot de passe oublier
 router.route('/lostPassword')
     .post(nodemailerController.lostPassword)
 
+// Page de mot de passe oublier
+router.route('/lostPassword/:id')
+    .get(nodemailerController.pageEditPassword)
+
+// Mot de passe oublier
+router.route('/editPassword')
+    .post(authController.editPassword)
 
 /***********
  * / Router

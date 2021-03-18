@@ -4,6 +4,7 @@
 
 // import nodemailer 
 const nodemailer = require('nodemailer'),
+    User = require('../DB/models/User'),
     // Déclaration ne notre transporter
     // C'est en quelque sorte notre connexion à notre boite mail
     transporter = nodemailer.createTransport({
@@ -46,7 +47,9 @@ module.exports = {
         })
     },
     lostPassword: async(req, res) => {
-        const user = await User.findOne({ email: req.body.email })
+        const user = await User.findOne({
+            email: req.body.email
+        })
 
         if (user) {
             // génération d'un chiffre random
@@ -54,7 +57,7 @@ module.exports = {
                 // on definit notre host
             host = req.get('host')
                 // on définit le lien
-            link = "http://" + req.get('host') + "/lostpassword/" + rand
+            link = "http://" + req.get('host') + "/lostPassword/" + rand
                 // et enfin notre mail
             mailOptions = {
                 from: process.env.USER_EMAIL,
@@ -82,5 +85,37 @@ module.exports = {
             res.redirect('/login')
 
         } else res.redirect('/')
+    },
+
+    // Génération de la page ID (Unique)
+    pageEditPassword: (req, res) => {
+        console.log(req.protocol + "://" + req.get('host'))
+        console.log('Page verify: ')
+
+        // Ici on tcheck notre protocole hébergeur (nodejs localhost) et le liens générer dans le mail
+        if ((req.protocol + "://" + req.get('host')) == ("http://" + host)) {
+            console.log("Domain is matched. Information is from Authentic email")
+
+            // Ici on tcheck notre id du mail avec la variable enregistrer en cache (rand)
+            if (req.params.id == mailOptions.rand) {
+                console.log("email is verified")
+                    // res.end("<h1>Email " + mailOptions.to + " is been Successfully verified")
+                res.render('editPassword', {
+                    mailOptions
+                })
+
+            } else {
+                console.log("email is not verified")
+                res.render('editPassword', {
+                    message: "Bad Request !"
+                })
+            }
+
+        } else {
+            res.render('editPassword', {
+                message: "Request is from unknown source !"
+            })
+        }
     }
+
 }
