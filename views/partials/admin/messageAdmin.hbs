@@ -14,18 +14,20 @@ Collapse Compétences
                 <!-- head de mon tableau -->
                 <thead>
                     <tr>
+                        <td scope="col">index</td>
                         <td scope="col">username</td>
                         <td scope="col">email</td>
                         <td scope="col">sujet</td>
                         <td scope="col">actions</td>
                     </tr>
                 </thead>
-                
+
                 <!-- body tableau -->
                 <tbody>
                     <!-- item tableau -->
                     {{#each dbMessage }}
                     <tr>
+                        <td> {{ inc @index }} </td>
                         <td> {{ username }} </td>
                         <td> {{ email }} </td>
                         <td> {{ sujet }} </td>

@@ -32,7 +32,8 @@ module.exports = {
 
         //Declaration const new comment avec schema en recuperant idpresentation
         const comment = new Commentaire({
-                author: req.body.author,
+                author: req.session.user.name,
+                authorID: req.session.userId,
                 content: req.body.content,
                 refID: presentation._id
             })

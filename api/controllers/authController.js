@@ -63,6 +63,10 @@ module.exports = {
             res.render('login', {
                 error: "Ce compte n'existe pas",
             })
+        } else if (userAuth.isBan === true) {
+            res.render('login', {
+                error: "Votre compte à été banni !",
+            })
         } else {
 
             User
@@ -94,6 +98,9 @@ module.exports = {
                                 // si useradmin est strictement vrai la requete de is admin vaut useradmain 
                             if (User.isAdmin === true) {
                                 req.session.isAdmin = User.isAdmin
+                            }
+                            if (User.isBan === true) {
+                                req.session.isBan = User.isBan
                             }
                             //notre requete session user vaut nos objets 
                             req.session.user = {

@@ -6,6 +6,7 @@ const CommentaireSchema = new mongoose.Schema({
 
     content: String,
     author: String,
+    authorID: String,
     refID: String
 
 })

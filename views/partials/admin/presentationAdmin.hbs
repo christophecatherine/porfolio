@@ -23,6 +23,7 @@ Collapse Présentation Admin
                 <!-- head de mon tableau -->
                 <thead>
                     <tr>
+                        <td scope="col">index</td>
                         <td scope="col">image</td>
                         <td scope="col">titre</td>
                         <td scope="col">date</td>
@@ -35,6 +36,7 @@ Collapse Présentation Admin
                     <!-- item tableau -->
                     {{#each dbPresentation }}
                     <tr>
+                        <td> {{ inc @index }} </td>
                         <th scope="col">
                             <img style="height: 35px;" src="{{ imgPresentation }}" alt=" ">
                         </th>

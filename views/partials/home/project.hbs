@@ -30,7 +30,7 @@ Page project
     <div id="listCard">
         <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
-            {{#each dbPresentation }}
+            {{#each (arrayReverse dbPresentation )}}
 
             <div class="card filterCard col-md-4 col-12 col-sm-12">
                 <a class="underline-none txt-black" href="/presentation/{{ _id }}">
@@ -57,7 +57,7 @@ Page project
     <div id="listCard">
         <div class="row justify-content-around" style="margin-top: 10vh; margin-bottom: 30vh;">
 
-            {{#each ( limit dbPresentation 3 ) }}
+            {{#each ( limitArrayReverse dbPresentation 3 ) }}
 
             <div class="card filterCard col-md-4 col-12 col-sm-12">
                 <a class="underline-none txt-black" href="/presentation/{{ _id }}">

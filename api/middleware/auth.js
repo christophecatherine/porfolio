@@ -7,5 +7,10 @@ module.exports = {
         if (!req.session.isAdmin) res.redirect('/')
             // simon on continue la requete 
         else next()
+    },
+    ban: (req, res, next) => {
+        if (req.session.isBan === true) res.end()
+            // simon on continue la requete 
+        else next()
     }
 }

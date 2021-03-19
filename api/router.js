@@ -41,19 +41,19 @@ router.route('/admin')
 // Competences 
 router.route('/competences')
     .get(competenceController.get)
-    .post(competenceController.create)
+    .post(auth.admin, competenceController.create)
 
 router.route('/competences/:id')
     .get(competenceController.getId)
-    .put(competenceController.editOne)
-    .delete(competenceController.deleteOne)
+    .put(auth.admin, competenceController.editOne)
+    .delete(auth.admin, competenceController.deleteOne)
 
 //Message
 router.route('/message')
     .post(messageController.create)
 
 router.route('/messageId/:id')
-    .delete(messageController.deleteOne)
+    .delete(auth.admin, messageController.deleteOne)
 
 //Auth
 router.route('/register')
@@ -61,8 +61,8 @@ router.route('/register')
 
 //User
 router.route('/user/:id')
-    .put(userController.editOne)
-    .delete(userController.deleteOne)
+    .put(auth.admin, userController.editOne)
+    .delete(auth.admin, userController.deleteOne)
 
 
 //Commentaire
@@ -78,12 +78,12 @@ router.route('/commentaire/:id')
 
 // Presentations
 router.route('/presentation')
-    .post(upload.single('imagePresentation'), presentationController.create)
+    .post(auth.admin, upload.single('imagePresentation'), presentationController.create)
 
 router.route('/presentation/:id')
     .get(presentationController.getId)
-    .delete(presentationController.deleteOne)
-    .put(upload.single('imagePresentation'), presentationController.editOne)
+    .delete(auth.admin, presentationController.deleteOne)
+    .put(auth.admin, upload.single('imagePresentation'), presentationController.editOne)
 
 // Project
 router.route('/project')

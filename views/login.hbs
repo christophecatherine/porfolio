@@ -41,12 +41,14 @@ Page Login
 
                         <div class="list-group">
                             {{#if error }}
-                            <a class="list-group-item list-group-item-danger error">Erreur : Information
-                                érroné</a>
+                            <a class="list-group-item list-group-item-danger error">
+                                {{ error }}
+                            </a>
                             {{/if}}
                             {{#if success}}
-                            <a class="list-group-item list-group-item-success error">Success ! Vous êtes en attentes
-                                d'être confirmer par un admin</a>
+                            <a class="list-group-item list-group-item-success error">
+                                {{ success }}
+                            </a>
                             {{/if}}
                         </div>
 

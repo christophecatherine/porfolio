@@ -54,7 +54,11 @@ app.use(expressSession({
 
 //Register Helper 
 const {
-    limitArray
+    limitArray,
+    limitArrayReverse,
+    arrayReverse,
+    ifCond,
+    inc
 } = require("./helper/hbs.js");
 
 // Moment (Handlebars)
@@ -66,10 +70,15 @@ MomentHandler.registerHelpers(Handlebars);
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs({
     extname: 'hbs',
+
     defaultLayout: 'main',
     adminLayout: 'admin',
     helpers: {
         limit: limitArray,
+        limitArrayReverse: limitArrayReverse,
+        arrayReverse: arrayReverse,
+        ifCond: ifCond,
+        inc: inc
     }
 }));
 
@@ -83,8 +92,10 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+const auth = require('./api/middleware/auth')
+
 // Déclaration de middleWare (session)
-app.use('*', (req, res, next) => {
+app.use('*', auth.ban, (req, res, next) => {
 
     // Déclaration et utilisation de notre session
     // en corélation avec notre base de donnée

@@ -15,10 +15,12 @@ Partials: Liste Commentaire
                         <p> {{ content }} </p>
                     </div>
                     <div class="col-md-2">
+                        {{#ifCond ../userId authorID }}
                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                             data-target="#modalDeleteComment{{_id}}">
                             <i class="far fa-trash-alt"></i>
                         </button>
+                        {{/ifCond }}
                     </div>
                 </div>
             </li>
@@ -37,16 +39,14 @@ Partials: Liste Commentaire
     <div class="row">
         {{!-- Formulaire Ajouter un commentaire --}}
         <form class="row" action="/commentaire/{{presentationID._id}}" method="post">
-            <!-- Input Username -->
-            <div class="col-md-6">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="author" value='{{ user.name }}' disabled />
-                </div>
-            </div>
 
             <!-- Input Message -->
             <div class="col-md-12">
                 <div class="form-group">
+                    <label for="">Vous écrivez un commentaire en tant que
+                        <u> <strong> {{ user.name }} </strong> </u>
+
+                    </label>
                     <textarea class="form-control" id="message-text" name="content" placeholder="Message"></textarea>
                 </div>
             </div>
