@@ -8,13 +8,13 @@ Page navbar
 
 <!-- CONDITION PETIT ECRAN -->
 <style>
-@media only screen and (max-width:800px){
+  @media only screen and (max-width:800px) {
     .nav-perso {
-        position: relative !important;
-        width: 100% !important;
-        flex-flow: column;
-        }
-}
+      position: relative !important;
+      width: 100% !important;
+      flex-flow: column;
+    }
+  }
 </style>
 
 
@@ -65,19 +65,26 @@ Page navbar
         <a class="nav-link" href="/project">Mes projets</a>
         <a class="nav-link" href="/contact">Contact</a>
 
-        {{#if user }}
-        <a class="nav-link" href="/logout">Se Déconnecter</a>
-        {{else}}
-        <a class="nav-link" href="/login">Se connecter</a>
-        {{/if}}
-
         {{#if admin }}
         <a class="nav-link" href="/admin">Admin</a>
         {{/if }}
 
+        {{#if user }}
+        <button type="button" class="btn btn-dark btn-sm"
+          data-toggle="modal" data-target="#modalLogout">
+          Se Déconnecter
+        </button>
+
+        {{else}}
+        <a class="nav-link" href="/login">Se connecter</a>
+        {{/if}}
+
       </div>
     </div>
   </nav>
+
+
+  {{> modals/modalLogout }}
 
   <style>
     .animation-rotate-360:hover {
