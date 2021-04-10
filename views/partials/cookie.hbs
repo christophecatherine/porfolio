@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Acceptez les cookie bande de batards</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Acceptez mes cookies pour que je puisse vendre vos datas à google qui serais très bien quoi en faire
+                </p>
+                <p>On toute libertée vous pouvez refusez, mais nous continuront a vous faire chiez avec notre modal (
+                    bande de batard ) <3 </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Refuser</button>
+                <a href="/cookie">
+                    <button type="button" class="btn btn-primary">Acceptez</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    if (document.cookie) {
+        console.log('J ai le cookie')
+
+        setTimeout(() => { // J'attend 1.5s pour faire apparaitre ma div
+            $('#delCookie').ready(() => {
+                console.log('csddsc')
+                $("#delCookie").html(
+                    `
+                <form action="/cookie" method="post">
+                    <button type="submit" class="btn btn-secondary" data-dismiss="modal">Supprimer cookie tracking</button>
+                </form>
+                `
+                )
+            })
+        }, 2500)
+    } else {
+        setTimeout(() => { // J'attend 1.5s pour faire apparaitre ma div
+            $('#cookieModal').modal('show')
+        }, 1500)
+    }
+</script>

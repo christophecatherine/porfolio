@@ -23,7 +23,8 @@ const homeController = require('./controllers/homeController'),
     userController = require('./controllers/userController'),
     commentaireController = require('./controllers/commentaireController'),
     authController = require('./controllers/authController'),
-    nodemailerController = require('./controllers/nodemailerController');
+    nodemailerController = require('./controllers/nodemailerController'),
+    cookieController = require('./controllers/cookieController');
 
 /*
 
@@ -123,6 +124,12 @@ router.route('/lostPassword/:id')
 // Mot de passe oublier
 router.route('/editPassword')
     .post(authController.editPassword)
+
+// Accept cookie
+router.route('/cookie')
+.get(cookieController.newCookie)
+.post(cookieController.delCookie)
+
 
 /***********
  * / Router

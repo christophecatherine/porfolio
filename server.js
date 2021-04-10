@@ -14,10 +14,12 @@ const
     bodyParser = require('body-parser'),
     port = process.env.PORT || 3000,
     methodeOverride = require("method-override"),
-    sharp = require('sharp');
-
+    cookieParser = require('cookie-parser');
 
 require('dotenv').config()
+
+//cookie-parser
+app.use(cookieParser());
 
 // Mongoose
 // Ceci est un tuto sinon vous devez cacher cette information de la ligne juste en dessous
