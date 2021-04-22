@@ -18,7 +18,7 @@ et ensuite rejoint le screen, par exemple
 screen -r portfolio
 
 kill le pross
-ctrl + c
+ctrl + c 
 
 et la tu fais:
 git pull
