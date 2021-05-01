@@ -13,11 +13,7 @@ module.exports = {
 
     //Method get
     get: (req, res) => {
-
-
-        // res.render('presentation')
         Presentation
-
             .find()
             .lean()
             .exec((err, data) => {
@@ -32,7 +28,6 @@ module.exports = {
 
     // Method GetId
     getId: (req, res) => {
-        // console.log('PageID: ', req.params.id)
         Presentation
             .findById(req.params.id)
             .populate('comment')

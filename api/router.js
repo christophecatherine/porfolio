@@ -76,7 +76,6 @@ router.route('/commentaire/:id')
     .post(commentaireController.create)
     .delete(commentaireController.deleteOne)
 
-
 // Presentations
 router.route('/presentation')
     .post(auth.admin, upload.single('imagePresentation'), presentationController.create)
@@ -127,8 +126,8 @@ router.route('/editPassword')
 
 // Accept cookie
 router.route('/cookie')
-.get(cookieController.newCookie)
-.post(cookieController.delCookie)
+    .get(cookieController.newCookie)
+    .post(cookieController.delCookie)
 
 
 /***********

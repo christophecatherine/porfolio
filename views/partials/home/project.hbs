@@ -12,7 +12,7 @@ Page project
     </div>
 
     {{!--
-    Permet de cherher dans le input mes declarations de variables --}}
+    Permet de recuperer la varible input depuis mon controller afin d'afficher mon input pour filtrer ma liste --}}
     {{#if search }}
     <!-- SearchBar -->
     <div class="container mt-5">
@@ -52,6 +52,32 @@ Page project
         </div>
     </div>
 
+    <!-- Script Input searchbar  -->
+
+    <script>
+        function myFunction() {
+            var input, filter, listCard, filterCard, a, i, txtValue;
+            input = document.getElementById('searchBar');
+            filter = input.value.toUpperCase();
+            listCard = document.getElementById("listCard");
+            filterCard = listCard.getElementsByClassName('filterCard');
+
+            for (i = 0; i < filterCard.length; i++) {
+                p = filterCard[i].getElementsByTagName("a")[0];
+                txtValue = (p.textContent || p.innerText)
+
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+
+                    filterCard[i].style.display = "";
+                } else {
+
+                    filterCard[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    <!-- / Script Input searchbar  -->
+
     {{else }}
 
     <div id="listCard">
@@ -65,7 +91,7 @@ Page project
                     <div class="card-body">
                         <h5 class="card-title">{{ title }}</h5>
                         <p class="card-text">
-                            {{{ content }}} 
+                            {{{ content }}}
                         </p>
                     </div>
                     <div class="card-footer">
@@ -83,32 +109,6 @@ Page project
 
     <!-- MON PROJECT1 -->
 
-   
-    
+
+
 </section>
-
-<!-- Script Input searchbar  -->
-
-<script>
-    function myFunction() {
-        var input, filter, listCard, filterCard, a, i, txtValue;
-        input = document.getElementById('searchBar');
-        filter = input.value.toUpperCase();
-        listCard = document.getElementById("listCard");
-        filterCard = listCard.getElementsByClassName('filterCard');
-
-        for (i = 0; i < filterCard.length; i++) {
-            p = filterCard[i].getElementsByTagName("a")[0];
-            txtValue = (p.textContent || p.innerText)
-
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-
-                filterCard[i].style.display = "";
-            } else {
-
-                filterCard[i].style.display = "none";
-            }
-        }
-    }
-</script>
-<!-- / Script Input searchbar  -->

@@ -37,17 +37,17 @@ describe('CHAI // CONTROLLER //  Presentation (project)', () => {
     });
 
     it(' ChaiRouter // Get page project', (done) => {
+        // simulation des data de mon formulaire
         let article = {
             title: 'test Chai Post'
         }
 
+        // simulation de l'envoie du formulaire
         chai.request(app)
             .post("/presentation")
             .send(article)
-            .end(function(err, res) {
-                if (err) {
-                    don(err);
-                }
+            .end((err, res) => {
+                if (err) done(err)
                 expect(res.status).to.equal(200);
                 done()
             });
